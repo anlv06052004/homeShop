@@ -82,7 +82,7 @@ const products: Product[] = [
   },
   {
     id: 5,
-    name: "Nồi cơm điện cao tần",
+    name: "Nồi cơm điện",
     category: "kitchen",
     icon: "🍚",
     price: 1790000,
