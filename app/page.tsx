@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 
 export default function HomeShop() {
-  // State quản lý màn hình: 'home' | 'category' | 'detail'
   const [currentView, setCurrentView] = useState<"home" | "category" | "detail">("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -11,156 +10,107 @@ export default function HomeShop() {
   const [quantity, setQuantity] = useState<number>(1);
   const [cartCount, setCartCount] = useState<number>(0);
 
-  // --- DỮ LIỆU SẢN PHẨM CÁC DANH MỤC ---
+  // --- DỮ LIỆU SẢN PHẨM (MỖI DANH MỤC 10 SẢN PHẨM) ---
 
-  // 1. Nồi & Chảo Inox (Danh mục mới thêm - Chờ bạn gửi thông tin/hình ảnh chính thức)
-  const cookwareProducts = [
-    {
-      id: "cw-1",
-      brand: "Sunhouse",
-      name: "Bộ Nồi Inox 3 Đáy Cao Cấp Sunhouse SH781",
-      price: 650000,
-      originalPrice: 890000,
-      discount: "-27%",
-      rating: "4.9/5 (150)",
-      image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
-      description: "Chất liệu inox cao cấp, đáy 3 lớp truyền nhiệt nhanh, dùng được trên mọi loại bếp kể cả bếp từ.",
-    },
-    {
-      id: "cw-2",
-      brand: "Elmich",
-      name: "Chảo Chống Dính Inox Elmich Max A 26cm",
-      price: 390000,
-      originalPrice: 520000,
-      discount: "-25%",
-      rating: "4.8/5 (210)",
-      image: "https://images.unsplash.com/photo-1583778176476-4a8b02a64c01?w=500&q=80",
-      description: "Lòng chảo phủ chống dính Bỉ siêu bền, tay cầm chống nóng an toàn, xào nấu tiện lợi.",
-    },
-    {
-      id: "cw-3",
-      brand: "Fissler",
-      name: "Nồi Inox Nguyên Khối Fissler Original-Profi Collection 20cm",
-      price: 2450000,
-      originalPrice: 3100000,
-      discount: "-21%",
-      rating: "5.0/5 (85)",
-      image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
-      description: "Thép không gỉ 18/10 chuẩn Đức, phân bổ nhiệt đều 360 độ, không bị cong vênh theo thời gian.",
-    }
-  ];
+  // 1. Nồi & Chảo Inox (10 sản phẩm)
+  const cookwareProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `cw-${i + 1}`,
+    brand: ["Sunhouse", "Elmich", "Fissler", "Goldsun", "Kangaroo"][i % 5],
+    name: `Nồi / Chảo Inox Cao Cấp Mẫu ${i + 1}`,
+    price: 350000 + i * 120000,
+    originalPrice: 500000 + i * 150000,
+    discount: `-${15 + (i % 20)}%`,
+    rating: "4.8/5 (120)",
+    image: [
+      "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
+      "https://images.unsplash.com/photo-1583778176476-4a8b02a64c01?w=500&q=80",
+    ][i % 2],
+    description: "Chất liệu Inox cao cấp chống gỉ, truyền nhiệt nhanh, đáy 3 lớp dùng tốt trên mọi loại bếp kể cả bếp từ.",
+  }));
 
-  // 2. Lò vi sóng
-  const microwaveProducts = [
-    {
-      id: "mw-1",
-      brand: "Sharp",
-      name: "Sharp Lò Vi Sóng Có Nướng R-G222VN-S 20 Lít",
-      price: 1390000,
-      originalPrice: 1790000,
-      discount: "-22%",
-      rating: "4.9/5 (180)",
-      image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&q=80",
-      description: "Dung tích 20L, công suất vi sóng 800W + nướng 1000W, 5 mức công suất điều chỉnh cơ dễ dàng.",
-    },
-    {
-      id: "mw-2",
-      brand: "Toshiba",
-      name: "Toshiba Lò Vi Sóng Điện Tử MW2-MM24PC(BK) 24 Lít",
-      price: 1990000,
-      originalPrice: 2500000,
-      discount: "-20%",
-      rating: "4.8/5 (145)",
-      image: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500&q=80",
-      description: "Lòng nồi tráng men chống gỉ, bảng điều khiển tiếng Việt thông minh.",
-    }
-  ];
+  // 2. Lò vi sóng (10 sản phẩm)
+  const microwaveProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `mw-${i + 1}`,
+    brand: ["Sharp", "Toshiba", "Panasonic", "Electrolux", "Samsung"][i % 5],
+    name: `Lò Vi Sóng Điện Tử / Cơ Model MS-${i + 1}`,
+    price: 1200000 + i * 180000,
+    originalPrice: 1600000 + i * 200000,
+    discount: `-${18 + (i % 12)}%`,
+    rating: "4.9/5 (95)",
+    image: [
+      "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&q=80",
+      "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500&q=80",
+    ][i % 2],
+    description: "Dung tích lớn, tích hợp chức năng rã đông nhanh, hâm nóng đồng đều và chế độ nướng tiện lợi.",
+  }));
 
-  // 3. Nồi chiên không dầu
-  const airFryerProducts = [
-    {
-      id: "af-1",
-      brand: "Philips",
-      name: "Philips Nồi Chiên Không Dầu HD9252/90 4.1 Lít",
-      price: 2190000,
-      originalPrice: 2990000,
-      discount: "-27%",
-      rating: "4.9/5 (340)",
-      image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&q=80",
-      description: "Công nghệ Rapid Air giảm 90% lượng chất béo, màn hình cảm ứng 7 chế độ cài sẵn.",
-    },
-    {
-      id: "af-2",
-      brand: "LocknLock",
-      name: "LocknLock Nồi Chiên Không Dầu Điện Tử EJF284BLK 5.5 Lít",
-      price: 1650000,
-      originalPrice: 2390000,
-      discount: "-31%",
-      rating: "4.8/5 (280)",
-      image: "https://images.unsplash.com/photo-1584269600519-112d071b35e6?w=500&q=80",
-      description: "Dung tích lớn 5.5L quay nguyên con gà, lòng nồi chống dính Teflon cao cấp.",
-    }
-  ];
+  // 3. Nồi chiên không dầu (10 sản phẩm)
+  const airFryerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `af-${i + 1}`,
+    brand: ["Philips", "LocknLock", "BlueStone", "Sunhouse", "Magic"][i % 5],
+    name: `Nồi Chiên Không Dầu Dung Tích Lớn AF-${i + 1}`,
+    price: 1100000 + i * 150000,
+    originalPrice: 1500000 + i * 180000,
+    discount: `-${20 + (i % 15)}%`,
+    rating: "4.8/5 (210)",
+    image: [
+      "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&q=80",
+      "https://images.unsplash.com/photo-1584269600519-112d071b35e6?w=500&q=80",
+    ][i % 2],
+    description: "Công nghệ chiên đối lưu Rapid Air giảm 90% mỡ thừa, lòng nồi phủ chống dính cao cấp dễ vệ sinh.",
+  }));
 
-  // 4. Robot hút bụi
-  const robotProducts = [
-    {
-      id: "rb-1",
-      brand: "Ecovacs",
-      name: "Ecovacs Deebot N30 | Robot hút bụi lau nhà 10.000Pa",
-      price: 1790000,
-      originalPrice: 2090000,
-      discount: "-14%",
-      rating: "5.0/5 (120)",
-      image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5a4j60cb",
-      description: "Lực hút 10.000Pa cực mạnh, chổi chống rối ZeroTangle 2.0, pin 5200mAh.",
-    }
-  ];
+  // 4. Nồi cơm điện (10 sản phẩm)
+  const riceCookerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `rc-${i + 1}`,
+    brand: ["Panasonic", "Toshiba", "Cuckoo", "Sunhouse", "LocknLock"][i % 5],
+    name: `Nồi Cơm Điện Cao Cấp RC-${i + 1}`,
+    price: 450000 + i * 130000,
+    originalPrice: 650000 + i * 160000,
+    discount: `-${15 + (i % 10)}%`,
+    rating: "4.9/5 (180)",
+    image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267",
+    description: "Gia nhiệt 3D giúp hạt cơm chín đều, dẻo ngon. Lòng nồi dày chống dính an toàn sức khỏe.",
+  }));
 
-  // 5. Nồi cơm điện
-  const riceCookerProducts = [
-    {
-      id: "rc-5",
-      brand: "LocknLock",
-      name: "LocknLock Daily rice cooker EJR472BLK 1.8L",
-      price: 1790000,
-      originalPrice: 2090000,
-      discount: "-14%",
-      rating: "4.9/5 (512)",
-      image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267",
-      description: "Gia nhiệt đều giúp cơm chín ngon tròn vị.",
-    }
-  ];
+  // 5. Robot hút bụi (10 sản phẩm)
+  const robotProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `rb-${i + 1}`,
+    brand: ["Ecovacs", "Xiaomi", "Dreame", "Roborock", "Neato"][i % 5],
+    name: `Robot Hút Bụi Lau Nhà Thông Minh RB-${i + 1}`,
+    price: 3200000 + i * 450000,
+    originalPrice: 4500000 + i * 500000,
+    discount: `-${22 + (i % 10)}%`,
+    rating: "5.0/5 (150)",
+    image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5a4j60cb",
+    description: "Lực hút siêu mạnh, định vị Laser lập bản đồ nhà thông minh, tự động sạc điện khi hết pin.",
+  }));
 
-  // 6. Đèn bàn thông minh
-  const lampProducts = [
-    {
-      id: "lp-1",
-      brand: "Xiaomi",
-      name: "Xiaomi Mi Smart LED Desk Lamp 1S | Chống cận thị",
-      price: 590000,
-      originalPrice: 750000,
-      discount: "-21%",
-      rating: "4.9/5 (88)",
-      image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
-      description: "4 chế độ chiếu sáng bảo vệ mắt, kết nối App điều khiển từ xa.",
-    }
-  ];
+  // 6. Đèn bàn thông minh (10 sản phẩm)
+  const lampProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `lp-${i + 1}`,
+    brand: ["Xiaomi", "Philips", "Điện Quang", "Rạng Đông", "Baseus"][i % 5],
+    name: `Đèn Bàn LED Chống Cận Thị DL-${i + 1}`,
+    price: 250000 + i * 60000,
+    originalPrice: 380000 + i * 80000,
+    discount: `-${20 + (i % 10)}%`,
+    rating: "4.9/5 (85)",
+    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
+    description: "Ánh sáng liên tục không nhấp nháy bảo vệ mắt, nhiều chế độ sáng cảm ứng linh hoạt.",
+  }));
 
-  // 7. Kệ tủ đồ đa năng
-  const shelfProducts = [
-    {
-      id: "sf-1",
-      brand: "HomeDecor",
-      name: "Kệ Gỗ Nhiều Tầng Đa Năng Cho Phòng Khách & Bếp",
-      price: 790000,
-      originalPrice: 950000,
-      discount: "-17%",
-      rating: "4.8/5 (64)",
-      image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&q=80",
-      description: "Chất liệu gỗ MDF phủ Melamine chống nước, thiết kế hiện đại.",
-    }
-  ];
+  // 7. Kệ tủ đồ đa năng (10 sản phẩm)
+  const shelfProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `sf-${i + 1}`,
+    brand: ["HomeDecor", "IBIE", "Baya", "Đại Đồng Tiến", "Song Long"][i % 5],
+    name: `Kệ Để Đồ Đa Năng Nhanh Gọn KS-${i + 1}`,
+    price: 390000 + i * 90000,
+    originalPrice: 550000 + i * 110000,
+    discount: `-${25 + (i % 8)}%`,
+    rating: "4.8/5 (95)",
+    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&q=80",
+    description: "Chịu lực tốt, lắp ráp dễ dàng, chất liệu bền đẹp tối ưu không gian sống gọn gàng.",
+  }));
 
   // Danh mục hiển thị ở Trang chủ
   const categoriesHome = [
@@ -215,7 +165,6 @@ export default function HomeShop() {
     },
   ];
 
-  // Xử lý chuyển trang
   const handleOpenCategory = (categoryId: string) => {
     setSelectedCategory(categoryId);
     setCurrentView("category");
@@ -239,7 +188,7 @@ export default function HomeShop() {
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-12">
-      {/* Header Navigation */}
+      {/* Header */}
       <header className="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <h1 
@@ -250,7 +199,7 @@ export default function HomeShop() {
           </h1>
           <nav className="hidden md:flex space-x-4 text-gray-700 font-medium text-xs lg:text-sm">
             <button onClick={() => setCurrentView("home")} className="hover:text-blue-600">Trang chủ</button>
-            <button onClick={() => handleOpenCategory("cookware")} className="hover:text-blue-600 text-red-600 font-bold">Nồi & Chảo Inox</button>
+            <button onClick={() => handleOpenCategory("cookware")} className="hover:text-blue-600">Nồi & Chảo Inox</button>
             <button onClick={() => handleOpenCategory("microwave")} className="hover:text-blue-600">Lò vi sóng</button>
             <button onClick={() => handleOpenCategory("air-fryer")} className="hover:text-blue-600">Nồi chiên</button>
             <button onClick={() => handleOpenCategory("rice-cooker")} className="hover:text-blue-600">Nồi cơm điện</button>
@@ -285,7 +234,7 @@ export default function HomeShop() {
 
             <div className="bg-white p-5 rounded-xl border shadow-sm">
               <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 border-b pb-3">
-                🍳 Tất cả {getActiveCategoryData().name}
+                📦 Tất cả {getActiveCategoryData().name} ({getActiveCategoryData().data.length} sản phẩm)
               </h2>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -398,7 +347,7 @@ export default function HomeShop() {
           </div>
         )}
 
-        {/* 3. TRANG CHỦ DANH SÁCH DANH MỤC SẢN PHẨM */}
+        {/* 3. TRANG CHỦ DANH SÁCH CÁC DANH MỤC */}
         {currentView === "home" && (
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
