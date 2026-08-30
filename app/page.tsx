@@ -12,7 +12,33 @@ export default function HomeShop() {
 
   // --- DỮ LIỆU SẢN PHẨM (MỖI DANH MỤC 10 SẢN PHẨM) ---
 
-  // 1. Nồi & Chảo Inox (10 sản phẩm)
+  // 1. Dao kéo các loại (10 sản phẩm)
+  const knifeProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `kn-${i + 1}`,
+    brand: ["Kiwi", "Zwilling", "Sunhouse", "LocknLock", "KAI"][i % 5],
+    name: `Bộ Dao Kéo Nhà Bếp Thép Không Gỉ Model K-${i + 1}`,
+    price: 90000 + i * 45000,
+    originalPrice: 150000 + i * 60000,
+    discount: `-${25 + (i % 10)}%`,
+    rating: "4.9/5 (110)",
+    image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?w=500&q=80",
+    description: "Lưỡi thép không gỉ sắc bén, tay cầm chống trượt đầm tay, hỗ trợ gọt hoa quả, thái thịt, chặt xương dễ dàng.",
+  }));
+
+  // 2. Bếp từ nấu lẩu / nấu ăn (10 sản phẩm)
+  const inductionProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `ic-${i + 1}`,
+    brand: ["Sunhouse", "Kangaroo", "Midea", "Philips", "BlueStone"][i % 5],
+    name: `Bếp Từ Đơn Nấu Lẩu & Nấu Ăn Cảm Ứng IC-${i + 1}`,
+    price: 650000 + i * 120000,
+    originalPrice: 950000 + i * 150000,
+    discount: `-${20 + (i % 12)}%`,
+    rating: "4.8/5 (230)",
+    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&q=80",
+    description: "Mặt kính chịu nhiệt chịu lực tốt, công suất 2000W đun nấu siêu nhanh, nhiều chế độ nấu lẩu, xào, rán, hầm tiện lợi.",
+  }));
+
+  // 3. Nồi & Chảo Inox (10 sản phẩm)
   const cookwareProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `cw-${i + 1}`,
     brand: ["Sunhouse", "Elmich", "Fissler", "Goldsun", "Kangaroo"][i % 5],
@@ -28,7 +54,7 @@ export default function HomeShop() {
     description: "Chất liệu Inox cao cấp chống gỉ, truyền nhiệt nhanh, đáy 3 lớp dùng tốt trên mọi loại bếp kể cả bếp từ.",
   }));
 
-  // 2. Lò vi sóng (10 sản phẩm)
+  // 4. Lò vi sóng (10 sản phẩm)
   const microwaveProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `mw-${i + 1}`,
     brand: ["Sharp", "Toshiba", "Panasonic", "Electrolux", "Samsung"][i % 5],
@@ -44,7 +70,7 @@ export default function HomeShop() {
     description: "Dung tích lớn, tích hợp chức năng rã đông nhanh, hâm nóng đồng đều và chế độ nướng tiện lợi.",
   }));
 
-  // 3. Nồi chiên không dầu (10 sản phẩm)
+  // 5. Nồi chiên không dầu (10 sản phẩm)
   const airFryerProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `af-${i + 1}`,
     brand: ["Philips", "LocknLock", "BlueStone", "Sunhouse", "Magic"][i % 5],
@@ -60,7 +86,7 @@ export default function HomeShop() {
     description: "Công nghệ chiên đối lưu Rapid Air giảm 90% mỡ thừa, lòng nồi phủ chống dính cao cấp dễ vệ sinh.",
   }));
 
-  // 4. Nồi cơm điện (10 sản phẩm)
+  // 6. Nồi cơm điện (10 sản phẩm)
   const riceCookerProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `rc-${i + 1}`,
     brand: ["Panasonic", "Toshiba", "Cuckoo", "Sunhouse", "LocknLock"][i % 5],
@@ -73,7 +99,7 @@ export default function HomeShop() {
     description: "Gia nhiệt 3D giúp hạt cơm chín đều, dẻo ngon. Lòng nồi dày chống dính an toàn sức khỏe.",
   }));
 
-  // 5. Robot hút bụi (10 sản phẩm)
+  // 7. Robot hút bụi (10 sản phẩm)
   const robotProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `rb-${i + 1}`,
     brand: ["Ecovacs", "Xiaomi", "Dreame", "Roborock", "Neato"][i % 5],
@@ -86,7 +112,7 @@ export default function HomeShop() {
     description: "Lực hút siêu mạnh, định vị Laser lập bản đồ nhà thông minh, tự động sạc điện khi hết pin.",
   }));
 
-  // 6. Đèn bàn thông minh (10 sản phẩm)
+  // 8. Đèn bàn thông minh (10 sản phẩm)
   const lampProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `lp-${i + 1}`,
     brand: ["Xiaomi", "Philips", "Điện Quang", "Rạng Đông", "Baseus"][i % 5],
@@ -99,7 +125,7 @@ export default function HomeShop() {
     description: "Ánh sáng liên tục không nhấp nháy bảo vệ mắt, nhiều chế độ sáng cảm ứng linh hoạt.",
   }));
 
-  // 7. Kệ tủ đồ đa năng (10 sản phẩm)
+  // 9. Kệ tủ đồ đa năng (10 sản phẩm)
   const shelfProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `sf-${i + 1}`,
     brand: ["HomeDecor", "IBIE", "Baya", "Đại Đồng Tiến", "Song Long"][i % 5],
@@ -114,6 +140,20 @@ export default function HomeShop() {
 
   // Danh mục hiển thị ở Trang chủ
   const categoriesHome = [
+    {
+      id: "knives",
+      name: "Dao kéo các loại",
+      description: "Bộ dao làm bếp, kéo cắt thức ăn thép không gỉ sắc bén Kiwi, Zwilling...",
+      image: knifeProducts[0].image,
+      data: knifeProducts,
+    },
+    {
+      id: "induction-cooker",
+      name: "Bếp từ nấu lẩu",
+      description: "Bếp từ đơn, bếp từ đôi đun nấu siêu nhanh Sunhouse, Kangaroo, Midea...",
+      image: inductionProducts[0].image,
+      data: inductionProducts,
+    },
     {
       id: "cookware",
       name: "Nồi & Chảo Inox",
@@ -197,15 +237,17 @@ export default function HomeShop() {
           >
             HomeShop
           </h1>
-          <nav className="hidden md:flex space-x-4 text-gray-700 font-medium text-xs lg:text-sm">
-            <button onClick={() => setCurrentView("home")} className="hover:text-blue-600">Trang chủ</button>
-            <button onClick={() => handleOpenCategory("cookware")} className="hover:text-blue-600">Nồi & Chảo Inox</button>
-            <button onClick={() => handleOpenCategory("microwave")} className="hover:text-blue-600">Lò vi sóng</button>
-            <button onClick={() => handleOpenCategory("air-fryer")} className="hover:text-blue-600">Nồi chiên</button>
-            <button onClick={() => handleOpenCategory("rice-cooker")} className="hover:text-blue-600">Nồi cơm điện</button>
-            <button onClick={() => handleOpenCategory("robot")} className="hover:text-blue-600">Robot hút bụi</button>
-            <button onClick={() => handleOpenCategory("lamp")} className="hover:text-blue-600">Đèn bàn</button>
-            <button onClick={() => handleOpenCategory("shelf")} className="hover:text-blue-600">Kệ tủ đồ</button>
+          <nav className="hidden md:flex space-x-3 text-gray-700 font-medium text-xs lg:text-sm overflow-x-auto">
+            <button onClick={() => setCurrentView("home")} className="hover:text-blue-600 whitespace-nowrap">Trang chủ</button>
+            <button onClick={() => handleOpenCategory("knives")} className="hover:text-blue-600 whitespace-nowrap text-red-600 font-bold">Dao kéo</button>
+            <button onClick={() => handleOpenCategory("induction-cooker")} className="hover:text-blue-600 whitespace-nowrap text-red-600 font-bold">Bếp từ</button>
+            <button onClick={() => handleOpenCategory("cookware")} className="hover:text-blue-600 whitespace-nowrap">Nồi & Chảo</button>
+            <button onClick={() => handleOpenCategory("microwave")} className="hover:text-blue-600 whitespace-nowrap">Lò vi sóng</button>
+            <button onClick={() => handleOpenCategory("air-fryer")} className="hover:text-blue-600 whitespace-nowrap">Nồi chiên</button>
+            <button onClick={() => handleOpenCategory("rice-cooker")} className="hover:text-blue-600 whitespace-nowrap">Nồi cơm</button>
+            <button onClick={() => handleOpenCategory("robot")} className="hover:text-blue-600 whitespace-nowrap">Robot hút bụi</button>
+            <button onClick={() => handleOpenCategory("lamp")} className="hover:text-blue-600 whitespace-nowrap">Đèn bàn</button>
+            <button onClick={() => handleOpenCategory("shelf")} className="hover:text-blue-600 whitespace-nowrap">Kệ tủ đồ</button>
           </nav>
           <div className="relative">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition text-sm">
