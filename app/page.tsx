@@ -17,58 +17,18 @@ export default function HomeShop() {
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5e57nk97",
   ];
 
-  // Bộ ảnh thực tế của Nồi cơm điện LocknLock EJR472BLK
+  // Bộ ảnh thực tế của Nồi cơm điện LocknLock EJR472BLK (Đã đổi ảnh đại diện nền trắng lên đầu)
   const riceCookerImages = [
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc82vi2dqm47", // Ảnh tách nền trắng (Ảnh 2)
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267", // Ảnh không gian bếp (Ảnh 1 cũ)
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8fpvdez1fb",
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8jx0dl3j41",
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc82vi2dqm47",
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc87p4fhu3c9",
   ];
 
   const products = [
     {
       id: "1",
-      name: "Nồi cơm điện",
-      fullName: "Nồi cơm điện LocknLock Daily rice cooker EJR472BLK dung tích 1.8L - Màu đen",
-      price: 1790000,
-      originalPrice: 2090000,
-      image: riceCookerImages[0],
-      images: riceCookerImages,
-      description: "Dung tích 1.8L, lòng nồi chống dính, gia nhiệt đều giúp cơm chín ngon tròn vị.",
-      highlights: [
-        "DUNG TÍCH LỚN 1.8L – Lý tưởng cho gia đình từ 4 đến 6 người.",
-        "LÒNG NỒI CHỐNG DÍNH – Chống bám dính hiệu quả, lau chùi vệ sinh cực kỳ dễ dàng.",
-        "GIA NHIỆT ĐỀU – Mâm nhiệt tối ưu giúp cơm chín đều, tơi xốp, thơm ngon tròn vị.",
-        "GIỮ ẤM TỰ ĐỘNG – Giữ cơm luôn nóng hổi trong nhiều giờ liền.",
-        "KHAY HỨNG NƯỚC THÔNG MINH – Thu nước thừa tiện lợi, giữ bếp luôn sạch sẽ.",
-        "KHE CÀI VÁ TÍCH HỢP – Giữ vá cơm gọn gàng, vệ sinh và tiện dùng.",
-      ],
-      specs: [
-        { label: "Tên sản phẩm", value: "Nồi cơm điện LocknLock Daily rice cooker" },
-        { label: "Mã sản phẩm", value: "EJR472BLK" },
-        { label: "Dung tích", value: "1.8L (Dành cho 4 - 6 người)" },
-        { label: "Màu sắc", value: "Đen sang trọng" },
-        { label: "Chất liệu", value: "Nhôm cao cấp, nhựa PP an toàn" },
-        { label: "Xuất xứ", value: "Trung Quốc" },
-        { label: "Thương hiệu", value: "LocknLock" },
-      ],
-      commitments: [
-        "Hàng chính hãng LocknLock, mới 100%, nguyên tem niêm phong.",
-        "Kiểm tra chất lượng kỹ càng trước khi đóng gói gửi cho khách.",
-        "Đổi trả trong vòng 7 ngày nếu xuất hiện lỗi do nhà sản xuất.",
-        "Tư vấn chu đáo, hỗ trợ giải đáp mọi thắc mắc 24/7.",
-      ],
-      userGuide: [
-        "Đọc kỹ hướng dẫn sử dụng kèm theo hộp trước khi vận hành.",
-        "Để xa tầm tay trẻ em khi nồi đang hoạt động.",
-        "Không ngâm toàn bộ thiết bị hoặc dây nguồn vào nước hay bất kỳ chất lỏng nào.",
-        "Tránh va đập, làm rơi thiết bị và kiểm tra an toàn điện định kỳ.",
-        "Không dùng thiết bị cho các mục đích khác ngoài nấu ăn theo thiết kế.",
-      ]
-    },
-    {
-      id: "2",
       name: "Robot hút bụi",
       fullName: "[Chính Hãng] Ecovacs Deebot N30 | Robot hút bụi lau nhà | Lực hút 10.000Pa",
       price: 1790000,
@@ -107,6 +67,46 @@ export default function HomeShop() {
         "Đảm bảo kiểm tra sản phẩm kỹ càng trước khi giao đến tay khách hàng.",
         "Tư vấn nhiệt tình, chu đáo, luôn lắng nghe khách hàng.",
         "Cam kết giá tốt nhất thị trường.",
+      ]
+    },
+    {
+      id: "2",
+      name: "Nồi cơm điện",
+      fullName: "Nồi cơm điện LocknLock Daily rice cooker EJR472BLK dung tích 1.8L - Màu đen",
+      price: 1790000,
+      originalPrice: 2090000,
+      image: riceCookerImages[0],
+      images: riceCookerImages,
+      description: "Dung tích 1.8L, lòng nồi chống dính, gia nhiệt đều giúp cơm chín ngon tròn vị.",
+      highlights: [
+        "DUNG TÍCH LỚN 1.8L – Lý tưởng cho gia đình từ 4 đến 6 người.",
+        "LÒNG NỒI CHỐNG DÍNH – Chống bám dính hiệu quả, lau chùi vệ sinh cực kỳ dễ dàng.",
+        "GIA NHIỆT ĐỀU – Mâm nhiệt tối ưu giúp cơm chín đều, tơi xốp, thơm ngon tròn vị.",
+        "GIỮ ẤM TỰ ĐỘNG – Giữ cơm luôn nóng hổi trong nhiều giờ liền.",
+        "KHAY HỨNG NƯỚC THÔNG MINH – Thu nước thừa tiện lợi, giữ bếp luôn sạch sẽ.",
+        "KHE CÀI VÁ TÍCH HỢP – Giữ vá cơm gọn gàng, vệ sinh và tiện dùng.",
+      ],
+      specs: [
+        { label: "Tên sản phẩm", value: "Nồi cơm điện LocknLock Daily rice cooker" },
+        { label: "Mã sản phẩm", value: "EJR472BLK" },
+        { label: "Dung tích", value: "1.8L (Dành cho 4 - 6 người)" },
+        { label: "Màu sắc", value: "Đen sang trọng" },
+        { label: "Chất liệu", value: "Nhôm cao cấp, nhựa PP an toàn" },
+        { label: "Xuất xứ", value: "Trung Quốc" },
+        { label: "Thương hiệu", value: "LocknLock" },
+      ],
+      commitments: [
+        "Hàng chính hãng LocknLock, mới 100%, nguyên tem niêm phong.",
+        "Kiểm tra chất lượng kỹ càng trước khi đóng gói gửi cho khách.",
+        "Đổi trả trong vòng 7 ngày nếu xuất hiện lỗi do nhà sản xuất.",
+        "Tư vấn chu đáo, hỗ trợ giải đáp mọi thắc mắc 24/7.",
+      ],
+      userGuide: [
+        "Đọc kỹ hướng dẫn sử dụng kèm theo hộp trước khi vận hành.",
+        "Để xa tầm tay trẻ em khi nồi đang hoạt động.",
+        "Không ngâm toàn bộ thiết bị hoặc dây nguồn vào nước hay bất kỳ chất lỏng nào.",
+        "Tránh va đập, làm rơi thiết bị và kiểm tra an toàn điện định kỳ.",
+        "Không dùng thiết bị cho các mục đích khác ngoài nấu ăn theo thiết kế.",
       ]
     },
     {
