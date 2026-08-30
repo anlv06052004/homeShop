@@ -12,7 +12,111 @@ export default function HomeShop() {
 
   // --- DỮ LIỆU SẢN PHẨM (MỖI DANH MỤC 10 SẢN PHẨM) ---
 
-  // 1. Dao kéo các loại (10 sản phẩm)
+  // 1. Máy sấy tóc (10 sản phẩm)
+  const hairDryerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `hd-${i + 1}`,
+    brand: ["Dyson", "Panasonic", "Philips", "Flyco", "Xiaomi"][i % 5],
+    name: `Máy Sấy Tóc Tạo Kiểu Chăm Sóc Tóc HD-${i + 1}`,
+    price: 290000 + i * 150000,
+    originalPrice: 450000 + i * 200000,
+    discount: `-${20 + (i % 10)}%`,
+    rating: "4.9/5 (180)",
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80",
+    description: "Công suất mạnh mẽ, bổ sung ion âm bảo vệ tóc không bị khô xơ, nhiều chế độ sấy nóng/lạnh linh hoạt.",
+  }));
+
+  // 2. Bàn chải đánh răng điện (10 sản phẩm)
+  const toothbrushProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `tb-${i + 1}`,
+    brand: ["Oral-B", "Philips Sonicare", "USmile", "Halio", "Xiaomi"][i % 5],
+    name: `Bàn Chải Đánh Răng Điện Sóng Âm TB-${i + 1}`,
+    price: 350000 + i * 120000,
+    originalPrice: 500000 + i * 160000,
+    discount: `-${25 + (i % 8)}%`,
+    rating: "4.8/5 (210)",
+    image: "https://images.unsplash.com/photo-1559591937-e68fb3305e40?w=500&q=80",
+    description: "Tần số rung siêu âm làm sạch sâu mảng bám, chế độ hẹn giờ thông minh 2 phút, chống nước IPX7.",
+  }));
+
+  // 3. Máy tăm nước (10 sản phẩm)
+  const flosserProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `wf-${i + 1}`,
+    brand: ["Waterpik", "Panasonic", "Procare", "Halio", "Xiaomi"][i % 5],
+    name: `Máy Tăm Nước Cầm Tay Vệ Sinh Răng Miệng WF-${i + 1}`,
+    price: 550000 + i * 180000,
+    originalPrice: 800000 + i * 220000,
+    discount: `-${22 + (i % 12)}%`,
+    rating: "4.9/5 (165)",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&q=80",
+    description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
+  }));
+
+  // 4. Quạt điện các loại (10 sản phẩm)
+  const fanProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `fn-${i + 1}`,
+    brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
+    name: `Quạt Điện Đứng / Quạt Không Cánh FN-${i + 1}`,
+    price: 420000 + i * 190000,
+    originalPrice: 600000 + i * 250000,
+    discount: `-${18 + (i % 10)}%`,
+    rating: "4.8/5 (310)",
+    image: "https://images.unsplash.com/photo-1618941723616-9584d47c34d3?w=500&q=80",
+    description: "Động cơ DC inverter tiết kiệm điện, vận hành êm ái, nhiều tốc độ gió và có điều khiển từ xa.",
+  }));
+
+  // 5. Máy lọc không khí (10 sản phẩm)
+  const purifierProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `ap-${i + 1}`,
+    brand: ["Xiaomi", "Sharp", "Dyson", "Philips", "Samsung"][i % 5],
+    name: `Máy Lọc Không Khí Diệt Khuẩn AP-${i + 1}`,
+    price: 1800000 + i * 350000,
+    originalPrice: 2500000 + i * 400000,
+    discount: `-${20 + (i % 15)}%`,
+    rating: "5.0/5 (140)",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&q=80",
+    description: "Màng lọc HEPA diệt khuẩn khử mùi, lọc sạch bụi mịn PM2.5, kết nối ứng dụng điện thoại thông minh.",
+  }));
+
+  // 6. Máy hút ẩm (10 sản phẩm)
+  const dehumidifierProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `dh-${i + 1}`,
+    brand: ["Dorosin", "Kosmen", "Sharp", "Electrolux", "FujiE"][i % 5],
+    name: `Máy Hút Ẩm Chống Mốc Gia Đình DH-${i + 1}`,
+    price: 2500000 + i * 400000,
+    originalPrice: 3200000 + i * 500000,
+    discount: `-${15 + (i % 10)}%`,
+    rating: "4.9/5 (95)",
+    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&q=80",
+    description: "Hút ẩm nhanh chóng bảo vệ đồ gỗ và sức khỏe, dung tích lọc lớn, tích hợp chức năng sấy quần áo.",
+  }));
+
+  // 7. Máy tạo kiểu tóc (10 sản phẩm)
+  const stylerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `st-${i + 1}`,
+    brand: ["Dyson", "Philips", "Flyco", "Vivid & Vogue", "Tesco"][i % 5],
+    name: `Máy Uốn Lọn / Là Thẳng Tóc Đa Năng ST-${i + 1}`,
+    price: 280000 + i * 160000,
+    originalPrice: 400000 + i * 220000,
+    discount: `-${25 + (i % 10)}%`,
+    rating: "4.8/5 (175)",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80",
+    description: "Mặt gốm phay mịn phủ gốm Keratin dưỡng tóc, gia nhiệt nhanh trong 30 giây, tạo kiểu tóc giữ nếp cả ngày.",
+  }));
+
+  // 8. Máy xông tinh dầu (10 sản phẩm)
+  const diffuserProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `df-${i + 1}`,
+    brand: ["Haeva", "Kodo", "Xiaomi", "LocknLock", "Bear"][i % 5],
+    name: `Máy Phun Sương Khuếch Tán Tinh Dầu DF-${i + 1}`,
+    price: 190000 + i * 80000,
+    originalPrice: 300000 + i * 110000,
+    discount: `-${30 + (i % 10)}%`,
+    rating: "4.9/5 (220)",
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500&q=80",
+    description: "Công nghệ siêu âm tạo sương mịn, kết hợp đèn LED đổi màu sinh động, giúp thư giãn không gian phòng.",
+  }));
+
+  // 9. Dao kéo các loại
   const knifeProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `kn-${i + 1}`,
     brand: ["Kiwi", "Zwilling", "Sunhouse", "LocknLock", "KAI"][i % 5],
@@ -25,7 +129,7 @@ export default function HomeShop() {
     description: "Lưỡi thép không gỉ sắc bén, tay cầm chống trượt đầm tay, hỗ trợ gọt hoa quả, thái thịt, chặt xương dễ dàng.",
   }));
 
-  // 2. Bếp từ nấu lẩu / nấu ăn (10 sản phẩm)
+  // 10. Bếp từ nấu lẩu
   const inductionProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `ic-${i + 1}`,
     brand: ["Sunhouse", "Kangaroo", "Midea", "Philips", "BlueStone"][i % 5],
@@ -35,10 +139,10 @@ export default function HomeShop() {
     discount: `-${20 + (i % 12)}%`,
     rating: "4.8/5 (230)",
     image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&q=80",
-    description: "Mặt kính chịu nhiệt chịu lực tốt, công suất 2000W đun nấu siêu nhanh, nhiều chế độ nấu lẩu, xào, rán, hầm tiện lợi.",
+    description: "Mặt kính chịu nhiệt chịu lực tốt, công suất 2000W đun nấu siêu nhanh, nhiều chế độ nấu tiện lợi.",
   }));
 
-  // 3. Nồi & Chảo Inox (10 sản phẩm)
+  // 11. Nồi & Chảo Inox
   const cookwareProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `cw-${i + 1}`,
     brand: ["Sunhouse", "Elmich", "Fissler", "Goldsun", "Kangaroo"][i % 5],
@@ -47,14 +151,11 @@ export default function HomeShop() {
     originalPrice: 500000 + i * 150000,
     discount: `-${15 + (i % 20)}%`,
     rating: "4.8/5 (120)",
-    image: [
-      "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
-      "https://images.unsplash.com/photo-1583778176476-4a8b02a64c01?w=500&q=80",
-    ][i % 2],
-    description: "Chất liệu Inox cao cấp chống gỉ, truyền nhiệt nhanh, đáy 3 lớp dùng tốt trên mọi loại bếp kể cả bếp từ.",
+    image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
+    description: "Chất liệu Inox cao cấp chống gỉ, truyền nhiệt nhanh, đáy 3 lớp dùng tốt trên mọi loại bếp.",
   }));
 
-  // 4. Lò vi sóng (10 sản phẩm)
+  // 12. Lò vi sóng
   const microwaveProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `mw-${i + 1}`,
     brand: ["Sharp", "Toshiba", "Panasonic", "Electrolux", "Samsung"][i % 5],
@@ -63,30 +164,24 @@ export default function HomeShop() {
     originalPrice: 1600000 + i * 200000,
     discount: `-${18 + (i % 12)}%`,
     rating: "4.9/5 (95)",
-    image: [
-      "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&q=80",
-      "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500&q=80",
-    ][i % 2],
+    image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&q=80",
     description: "Dung tích lớn, tích hợp chức năng rã đông nhanh, hâm nóng đồng đều và chế độ nướng tiện lợi.",
   }));
 
-  // 5. Nồi chiên không dầu (10 sản phẩm)
+  // 13. Nồi chiên không dầu
   const airFryerProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `af-${i + 1}`,
     brand: ["Philips", "LocknLock", "BlueStone", "Sunhouse", "Magic"][i % 5],
-    name: `Nồi Chiên Không Dầu Dung Tích Lớn AF-${i + 1}`,
+    name: `Nồi Chiên Không Dầu AF-${i + 1}`,
     price: 1100000 + i * 150000,
     originalPrice: 1500000 + i * 180000,
     discount: `-${20 + (i % 15)}%`,
     rating: "4.8/5 (210)",
-    image: [
-      "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&q=80",
-      "https://images.unsplash.com/photo-1584269600519-112d071b35e6?w=500&q=80",
-    ][i % 2],
-    description: "Công nghệ chiên đối lưu Rapid Air giảm 90% mỡ thừa, lòng nồi phủ chống dính cao cấp dễ vệ sinh.",
+    image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&q=80",
+    description: "Công nghệ chiên đối lưu Rapid Air giảm 90% mỡ thừa, lòng nồi phủ chống dính cao cấp.",
   }));
 
-  // 6. Nồi cơm điện (10 sản phẩm)
+  // 14. Nồi cơm điện
   const riceCookerProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `rc-${i + 1}`,
     brand: ["Panasonic", "Toshiba", "Cuckoo", "Sunhouse", "LocknLock"][i % 5],
@@ -99,11 +194,11 @@ export default function HomeShop() {
     description: "Gia nhiệt 3D giúp hạt cơm chín đều, dẻo ngon. Lòng nồi dày chống dính an toàn sức khỏe.",
   }));
 
-  // 7. Robot hút bụi (10 sản phẩm)
+  // 15. Robot hút bụi
   const robotProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `rb-${i + 1}`,
     brand: ["Ecovacs", "Xiaomi", "Dreame", "Roborock", "Neato"][i % 5],
-    name: `Robot Hút Bụi Lau Nhà Thông Minh RB-${i + 1}`,
+    name: `Robot Hút Bụi Lau Nhà RB-${i + 1}`,
     price: 3200000 + i * 450000,
     originalPrice: 4500000 + i * 500000,
     discount: `-${22 + (i % 10)}%`,
@@ -112,7 +207,7 @@ export default function HomeShop() {
     description: "Lực hút siêu mạnh, định vị Laser lập bản đồ nhà thông minh, tự động sạc điện khi hết pin.",
   }));
 
-  // 8. Đèn bàn thông minh (10 sản phẩm)
+  // 16. Đèn bàn thông minh
   const lampProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `lp-${i + 1}`,
     brand: ["Xiaomi", "Philips", "Điện Quang", "Rạng Đông", "Baseus"][i % 5],
@@ -125,11 +220,11 @@ export default function HomeShop() {
     description: "Ánh sáng liên tục không nhấp nháy bảo vệ mắt, nhiều chế độ sáng cảm ứng linh hoạt.",
   }));
 
-  // 9. Kệ tủ đồ đa năng (10 sản phẩm)
+  // 17. Kệ tủ đồ đa năng
   const shelfProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `sf-${i + 1}`,
     brand: ["HomeDecor", "IBIE", "Baya", "Đại Đồng Tiến", "Song Long"][i % 5],
-    name: `Kệ Để Đồ Đa Năng Nhanh Gọn KS-${i + 1}`,
+    name: `Kệ Để Đồ Đa Năng KS-${i + 1}`,
     price: 390000 + i * 90000,
     originalPrice: 550000 + i * 110000,
     discount: `-${25 + (i % 8)}%`,
@@ -140,6 +235,62 @@ export default function HomeShop() {
 
   // Danh mục hiển thị ở Trang chủ
   const categoriesHome = [
+    {
+      id: "hair-dryer",
+      name: "Máy sấy tóc",
+      description: "Máy sấy tóc ion âm bảo vệ tóc Dyson, Panasonic, Philips, Flyco...",
+      image: hairDryerProducts[0].image,
+      data: hairDryerProducts,
+    },
+    {
+      id: "electric-toothbrush",
+      name: "Bàn chải điện",
+      description: "Bàn chải đánh răng điện sóng âm làm sạch mảng bám Oral-B, Philips...",
+      image: toothbrushProducts[0].image,
+      data: toothbrushProducts,
+    },
+    {
+      id: "water-flosser",
+      name: "Máy tăm nước",
+      description: "Máy tăm nước cầm tay làm sạch kẽ răng Waterpik, Panasonic, Halio...",
+      image: flosserProducts[0].image,
+      data: flosserProducts,
+    },
+    {
+      id: "fan",
+      name: "Quạt điện các loại",
+      description: "Quạt đứng, quạt cây, quạt không cánh êm ái Panasonic, Toshiba, Xiaomi...",
+      image: fanProducts[0].image,
+      data: fanProducts,
+    },
+    {
+      id: "air-purifier",
+      name: "Máy lọc không khí",
+      description: "Lọc bụi mịn PM2.5, diệt khuẩn khử mùi phòng ngủ Xiaomi, Sharp, Dyson...",
+      image: purifierProducts[0].image,
+      data: purifierProducts,
+    },
+    {
+      id: "dehumidifier",
+      name: "Máy hút ẩm",
+      description: "Hút ẩm chống nấm mốc mùa nồm Dorosin, Kosmen, Sharp, FujiE...",
+      image: dehumidifierProducts[0].image,
+      data: dehumidifierProducts,
+    },
+    {
+      id: "hair-styler",
+      name: "Máy tạo kiểu tóc",
+      description: "Máy uốn tóc xoăn, máy là thẳng tóc phủ Keratin Dyson, Vivid & Vogue...",
+      image: stylerProducts[0].image,
+      data: stylerProducts,
+    },
+    {
+      id: "essential-diffuser",
+      name: "Máy xông tinh dầu",
+      description: "Máy phun sương khuếch tán tinh dầu thư giãn Haeva, Kodo, Xiaomi...",
+      image: diffuserProducts[0].image,
+      data: diffuserProducts,
+    },
     {
       id: "knives",
       name: "Dao kéo các loại",
@@ -237,17 +388,16 @@ export default function HomeShop() {
           >
             HomeShop
           </h1>
-          <nav className="hidden md:flex space-x-3 text-gray-700 font-medium text-xs lg:text-sm overflow-x-auto">
+          <nav className="hidden md:flex space-x-3 text-gray-700 font-medium text-xs lg:text-sm overflow-x-auto py-2">
             <button onClick={() => setCurrentView("home")} className="hover:text-blue-600 whitespace-nowrap">Trang chủ</button>
-            <button onClick={() => handleOpenCategory("knives")} className="hover:text-blue-600 whitespace-nowrap text-red-600 font-bold">Dao kéo</button>
-            <button onClick={() => handleOpenCategory("induction-cooker")} className="hover:text-blue-600 whitespace-nowrap text-red-600 font-bold">Bếp từ</button>
-            <button onClick={() => handleOpenCategory("cookware")} className="hover:text-blue-600 whitespace-nowrap">Nồi & Chảo</button>
-            <button onClick={() => handleOpenCategory("microwave")} className="hover:text-blue-600 whitespace-nowrap">Lò vi sóng</button>
-            <button onClick={() => handleOpenCategory("air-fryer")} className="hover:text-blue-600 whitespace-nowrap">Nồi chiên</button>
-            <button onClick={() => handleOpenCategory("rice-cooker")} className="hover:text-blue-600 whitespace-nowrap">Nồi cơm</button>
-            <button onClick={() => handleOpenCategory("robot")} className="hover:text-blue-600 whitespace-nowrap">Robot hút bụi</button>
-            <button onClick={() => handleOpenCategory("lamp")} className="hover:text-blue-600 whitespace-nowrap">Đèn bàn</button>
-            <button onClick={() => handleOpenCategory("shelf")} className="hover:text-blue-600 whitespace-nowrap">Kệ tủ đồ</button>
+            <button onClick={() => handleOpenCategory("hair-dryer")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy sấy tóc</button>
+            <button onClick={() => handleOpenCategory("electric-toothbrush")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Bàn chải điện</button>
+            <button onClick={() => handleOpenCategory("water-flosser")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy tăm nước</button>
+            <button onClick={() => handleOpenCategory("fan")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Quạt điện</button>
+            <button onClick={() => handleOpenCategory("air-purifier")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy lọc khí</button>
+            <button onClick={() => handleOpenCategory("dehumidifier")} className="hover:text-blue-600 whitespace-nowrap">Máy hút ẩm</button>
+            <button onClick={() => handleOpenCategory("hair-styler")} className="hover:text-blue-600 whitespace-nowrap">Tạo kiểu tóc</button>
+            <button onClick={() => handleOpenCategory("essential-diffuser")} className="hover:text-blue-600 whitespace-nowrap">Xông tinh dầu</button>
           </nav>
           <div className="relative">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition text-sm">
