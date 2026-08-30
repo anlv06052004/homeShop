@@ -8,7 +8,7 @@ export default function HomeShop() {
   const [quantity, setQuantity] = useState<number>(1);
   const [cartCount, setCartCount] = useState<number>(0);
 
-  // Bộ ảnh thực tế của Ecovacs Deebot N30
+  // Bộ ảnh thực tế của Robot hút bụi Ecovacs Deebot N30
   const robotImages = [
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5a4j60cb",
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5b0u843c",
@@ -17,14 +17,55 @@ export default function HomeShop() {
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5e57nk97",
   ];
 
+  // Bộ ảnh thực tế của Nồi cơm điện LocknLock EJR472BLK
+  const riceCookerImages = [
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8fpvdez1fb",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8jx0dl3j41",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc82vi2dqm47",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc87p4fhu3c9",
+  ];
+
   const products = [
     {
       id: "1",
       name: "Nồi cơm điện",
+      fullName: "Nồi cơm điện LocknLock Daily rice cooker EJR472BLK dung tích 1.8L - Màu đen",
       price: 1790000,
       originalPrice: 2090000,
-      image: "https://images.unsplash.com/photo-1544233726-9f1d2b27be8b?w=500&q=80",
-      description: "Công nghệ cao tần giúp cơm chín đều và thơm ngon.",
+      image: riceCookerImages[0],
+      images: riceCookerImages,
+      description: "Dung tích 1.8L, lòng nồi chống dính, gia nhiệt đều giúp cơm chín ngon tròn vị.",
+      highlights: [
+        "DUNG TÍCH LỚN 1.8L – Lý tưởng cho gia đình từ 4 đến 6 người.",
+        "LÒNG NỒI CHỐNG DÍNH – Chống bám dính hiệu quả, lau chùi vệ sinh cực kỳ dễ dàng.",
+        "GIA NHIỆT ĐỀU – Mâm nhiệt tối ưu giúp cơm chín đều, tơi xốp, thơm ngon tròn vị.",
+        "GIỮ ẤM TỰ ĐỘNG – Giữ cơm luôn nóng hổi trong nhiều giờ liền.",
+        "KHAY HỨNG NƯỚC THÔNG MINH – Thu nước thừa tiện lợi, giữ bếp luôn sạch sẽ.",
+        "KHE CÀI VÁ TÍCH HỢP – Giữ vá cơm gọn gàng, vệ sinh và tiện dùng.",
+      ],
+      specs: [
+        { label: "Tên sản phẩm", value: "Nồi cơm điện LocknLock Daily rice cooker" },
+        { label: "Mã sản phẩm", value: "EJR472BLK" },
+        { label: "Dung tích", value: "1.8L (Dành cho 4 - 6 người)" },
+        { label: "Màu sắc", value: "Đen sang trọng" },
+        { label: "Chất liệu", value: "Nhôm cao cấp, nhựa PP an toàn" },
+        { label: "Xuất xứ", value: "Trung Quốc" },
+        { label: "Thương hiệu", value: "LocknLock" },
+      ],
+      commitments: [
+        "Hàng chính hãng LocknLock, mới 100%, nguyên tem niêm phong.",
+        "Kiểm tra chất lượng kỹ càng trước khi đóng gói gửi cho khách.",
+        "Đổi trả trong vòng 7 ngày nếu xuất hiện lỗi do nhà sản xuất.",
+        "Tư vấn chu đáo, hỗ trợ giải đáp mọi thắc mắc 24/7.",
+      ],
+      userGuide: [
+        "Đọc kỹ hướng dẫn sử dụng kèm theo hộp trước khi vận hành.",
+        "Để xa tầm tay trẻ em khi nồi đang hoạt động.",
+        "Không ngâm toàn bộ thiết bị hoặc dây nguồn vào nước hay bất kỳ chất lỏng nào.",
+        "Tránh va đập, làm rơi thiết bị và kiểm tra an toàn điện định kỳ.",
+        "Không dùng thiết bị cho các mục đích khác ngoài nấu ăn theo thiết kế.",
+      ]
     },
     {
       id: "2",
@@ -142,7 +183,7 @@ export default function HomeShop() {
             <div className="bg-white rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Left Column: Image Gallery */}
               <div>
-                <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4 border">
+                <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4 border flex items-center justify-center">
                   <img
                     src={selectedImage}
                     alt={selectedProduct.name}
@@ -251,22 +292,38 @@ export default function HomeShop() {
               </div>
             </div>
 
-            {/* Detailed Specifications & Commitments */}
+            {/* Detailed Specifications & User Guide */}
             {selectedProduct.specs && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Specifications Table */}
-                <div className="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b flex items-center gap-2">
-                    📋 Thông Số Kỹ Thuật
-                  </h3>
-                  <div className="divide-y text-sm">
-                    {selectedProduct.specs.map((item: any, idx: number) => (
-                      <div key={idx} className="py-2.5 grid grid-cols-3 gap-4">
-                        <span className="text-gray-500 font-medium">{item.label}</span>
-                        <span className="col-span-2 text-gray-800 font-semibold">{item.value}</span>
-                      </div>
-                    ))}
+                <div className="lg:col-span-2 space-y-6">
+                  <div className="bg-white rounded-xl p-6 shadow-sm border">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b flex items-center gap-2">
+                      📋 Thông Số Kỹ Thuật
+                    </h3>
+                    <div className="divide-y text-sm">
+                      {selectedProduct.specs.map((item: any, idx: number) => (
+                        <div key={idx} className="py-2.5 grid grid-cols-3 gap-4">
+                          <span className="text-gray-500 font-medium">{item.label}</span>
+                          <span className="col-span-2 text-gray-800 font-semibold">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* User Guide Section */}
+                  {selectedProduct.userGuide && (
+                    <div className="bg-white rounded-xl p-6 shadow-sm border">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 pb-2 border-b flex items-center gap-2">
+                        📖 Hướng Dẫn Sử Dụng & An Toàn
+                      </h3>
+                      <ul className="space-y-2 text-sm text-gray-700 list-disc list-inside">
+                        {selectedProduct.userGuide.map((guide: string, idx: number) => (
+                          <li key={idx}>{guide}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
 
                 {/* Commitments & Guarantee */}
@@ -286,8 +343,8 @@ export default function HomeShop() {
                   </div>
 
                   <div className="p-4 bg-orange-50 rounded-lg border border-orange-200 text-xs text-gray-700 space-y-2">
-                    <p className="font-bold text-orange-800">⭐️ Ecovacs Việt Nam xin cảm ơn!</p>
-                    <p>Nếu bạn cần hỗ trợ thêm, đừng ngần ngại nhắn tin qua kênh chat chăm sóc khách hàng nhé!</p>
+                    <p className="font-bold text-orange-800">⭐️ HomeShop Cam Kết Giá Tốt Nhất!</p>
+                    <p>Nếu bạn cần tư vấn sản phẩm hoặc hỗ trợ kỹ thuật, hãy nhắn tin ngay cho cửa hàng nhé!</p>
                   </div>
                 </div>
               </div>
