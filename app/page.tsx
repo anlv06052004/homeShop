@@ -17,13 +17,13 @@ export default function HomeShop() {
     "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5e57nk97",
   ];
 
-  // Bộ ảnh thực tế của Nồi cơm điện LocknLock EJR472BLK (Đã đổi ảnh đại diện nền trắng lên đầu)
+  // Bộ ảnh thực tế của Nồi cơm điện LocknLock EJR472BLK (Đưa ảnh thứ 4 lên vị trí đầu tiên)
   const riceCookerImages = [
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc82vi2dqm47", // Ảnh tách nền trắng (Ảnh 2)
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267", // Ảnh không gian bếp (Ảnh 1 cũ)
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8fpvdez1fb",
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8jx0dl3j41",
-    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc87p4fhu3c9",
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc82vi2dqm47", // Ảnh thứ 4 (Đặt trên bàn bếp có món ăn kèm)
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267", // Ảnh hấp bắp (Ảnh 1)
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8fpvdez1fb", // Ảnh thân nồi (Ảnh 2)
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8jx0dl3j41", // Ảnh xới cơm (Ảnh 3)
+    "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc87p4fhu3c9", // Ảnh nền trắng (Ảnh 5)
   ];
 
   const products = [
