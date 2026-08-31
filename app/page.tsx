@@ -10,10 +10,13 @@ export default function HomeShop() {
   const [quantity, setQuantity] = useState<number>(1);
   const [cartCount, setCartCount] = useState<number>(0);
 
-  // URL Base cho ảnh Shopee CDN
-  const SHOPEE_CDN = "https://down-vn.img.susercontent.com/file/";
-
-  // --- DỮ LIỆU SẢN PHẨM (MỖI DANH MỤC 10 SẢN PHẨM) ---
+  // Bộ ảnh mẫu ổn định không bao giờ bị lỗi CDN
+  const FAN_IMAGES = [
+    "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=800&q=80",
+    "https://images.unsplash.com/photo-1618961734760-466979ce35b0?w=800&q=80",
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
+    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+  ];
 
   // 1. Máy sấy tóc
   const hairDryerProducts = Array.from({ length: 10 }, (_, i) => ({
@@ -54,7 +57,7 @@ export default function HomeShop() {
     description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
   }));
 
-  // 4. Quạt điện (Cập nhật đường dẫn đầy đủ cho FUJIHOME)
+  // 4. Quạt điện (Dùng bộ ảnh Unsplash để load nhanh và không vỡ)
   const fanProducts = [
     {
       id: "fn-1",
@@ -64,59 +67,38 @@ export default function HomeShop() {
       originalPrice: 3500000,
       discount: "-29%",
       rating: "5.0/5 (450)",
-      image: `${SHOPEE_CDN}vn-11134207-81ztc-mqfp79vvk6bz77.webp`,
-      images: [
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqfp79vvk6bz77.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqcr4jrod8g24c.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqcr4jroen0ied.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqcr4jrpozr5c2.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqcr4jrwsn40c4.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqfoq05lv2m8b7.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqfor4wld1xp31.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqfor4wschl7ee.webp`,
-        `${SHOPEE_CDN}vn-11134207-81ztc-mqcr4jrobtvm98.webp`,
-      ],
+      image: FAN_IMAGES[0],
+      images: FAN_IMAGES,
       description: `⭐ MUA HÀNG TẠI FUJIHOME VIỆT NAM - LÀ GIAN HÀNG CHÍNH HÃNG CỦA CÔNG TY TNHH FUJIHOME VIỆT NAM !
 
 📌 FUJIHOME VIỆT NAM CAM KẾT:
 - Hàng Nhập Khẩu chính hãng, đầy đủ giấy tờ CO-CQ.
-- Bảo hành ĐIỆN TỬ theo tem điện tử trên sản phẩm (1- 5 năm tuỳ sản phẩm).
+- Bảo hành ĐIỆN TỬ theo tem điện tử trên sản phẩm (1 - 5 năm tuỳ sản phẩm).
 - Lỗi 1 đổi 1 trong vòng 7 ngày nếu phát sinh lỗi từ phía nhà sản xuất.
 - Đổi trả miễn phí nếu sản phẩm có lỗi NSX hoặc giao sai hàng.
 
 🚚 GIAO HOẢ TỐC 2H TẠI HÀ NỘI - HỒ CHÍ MINH - ĐÀ NẴNG.
-🎁 CÓ TẶNG KÈM QUÀ TẶNG TỪ HÃNG ( TUỲ THEO CTKM CỦA HÃNG).
-🏠 6 KHO HÀNG TẠI HÀ NỘI - HỒ CHÍ MINH - ĐÀ NẴNG GIAO HÀNG NHANH.
-📞 HOTLINE TRÊN MÁY: hỗ trợ bảo hành toàn quốc và hướng dẫn sử dụng
 
 QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
 [ Đối lưu không khí - Lọc không khí 3 lớp - HEPA - UV - Ionizer - Điều khiển thông minh giọng nói ]
 
 ✅ ƯU ĐIỂM VƯỢT TRỘI:
 • 3 chế độ điều khiển thông minh: Điều khiển giọng nói tiếng Việt + Điều khiển từ xa + Cảm ứng.
-• Bộ lọc 3 lớp thông minh HEPA + UV + Ionizer giúp loại bỏ bụi mịn, vi khuẩn, mùi khó chịu trong không gian sống.
-• Động cơ DC Inverter tiết kiệm điện vượt trội, vận hành êm, không rung lắc, tăng tuổi thọ thiết bị.
-• Trang bị 32 mức gió và 4 chế độ thông minh (Gió thường, Gió ngủ, Gió trẻ em, Gió thông minh), phù hợp từ trẻ nhỏ đến người lớn tuổi.
-• Chức năng tạo ẩm 90ml/h, bình nước 135ml giúp không khí dễ chịu, giảm khô da, bảo vệ hô hấp.
-• Thiết kế không cánh hiện đại, an toàn tuyệt đối, dễ lau chùi, tăng tính thẩm mỹ cho không gian.
-• Góc xoay rộng 60 độ giúp làm mát đều, tiết kiệm điện năng và tối ưu hiệu quả sử dụng.
+• Bộ lọc 3 lớp thông minh HEPA + UV + Ionizer giúp loại bỏ bụi mịn, vi khuẩn, mùi khó chịu.
+• Động cơ DC Inverter tiết kiệm điện vượt trội, vận hành êm, không rung lắc.
+• Trang bị 32 mức gió và 4 chế độ thông minh (Gió thường, Gió ngủ, Gió trẻ em, Gió thông minh).
+• Chức năng tạo ẩm 90ml/h, bình nước 135ml giúp không khí dễ chịu, giảm khô da.
+• Thiết kế không cánh hiện đại, an toàn tuyệt đối cho trẻ nhỏ, dễ lau chùi.
+• Góc xoay rộng 60 độ giúp làm mát đều khắp phòng.
 
 ✅ THÔNG SỐ KỸ THUẬT:
-• Điện áp sử dụng: 220 – 240V / 50 – 60Hz
-• Công suất: 50W
-• Động cơ: Inverter DC, tiết kiệm điện, vận hành êm ái
-• Màn hình: LED
-• Điều khiển bằng giọng nói + Remote từ xa + Cảm ứng trực tiếp
-• Số cấp gió: 32 cấp
-• Hẹn giờ: Tối đa 15 tiếng
-• Góc xoay: 60°
-• Dung tích bình nước tạo ẩm: 135ml (Công suất 90ml/h)
+• Điện áp: 220 – 240V / 50 – 60Hz | Công suất: 50W
+• Động cơ: Inverter DC tiết kiệm điện | Màn hình: LED
+• Số cấp gió: 32 cấp | Hẹn giờ: Tối đa 15 tiếng | Góc xoay: 60°
+• Bình nước tạo ẩm: 135ml (Công suất 90ml/h)
 • Thân máy: Nhựa ABS cao cấp
-• Kích thước sản phẩm: 237 x 237 x 1100mm
-• Kích thước bao bì: 310 x 270 x 1140mm
-• Trọng lượng sản phẩm / Trọng lượng bao bì: 4.7kg / 6.5kg
-• Bảo hành: 24 tháng
-• Xuất xứ: Trung Quốc`,
+• Kích thước sản phẩm: 237 x 237 x 1100mm | Trọng lượng: 4.7kg
+• Bảo hành: 24 tháng chính hãng | Xuất xứ: Trung Quốc`,
     },
     ...Array.from({ length: 9 }, (_, i) => ({
       id: `fn-${i + 2}`,
@@ -196,71 +178,17 @@ QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
     description: "Lưỡi thép không gỉ sắc bén, tay cầm chống trượt đầm tay, hỗ trợ gọt hoa quả, thái thịt, chặt xương dễ dàng.",
   }));
 
-  // Danh mục hiển thị
+  // Danh mục hiển thị ở Trang chủ
   const categoriesHome = [
-    {
-      id: "hair-dryer",
-      name: "Máy sấy tóc",
-      description: "Máy sấy tóc ion âm bảo vệ tóc Dyson, Panasonic, Philips, Flyco...",
-      image: hairDryerProducts[0].image,
-      data: hairDryerProducts,
-    },
-    {
-      id: "electric-toothbrush",
-      name: "Bàn chải điện",
-      description: "Bàn chải đánh răng điện sóng âm làm sạch mảng bám Oral-B, Philips...",
-      image: toothbrushProducts[0].image,
-      data: toothbrushProducts,
-    },
-    {
-      id: "water-flosser",
-      name: "Máy tăm nước",
-      description: "Máy tăm nước cầm tay làm sạch kẽ răng Waterpik, Panasonic, Halio...",
-      image: flosserProducts[0].image,
-      data: flosserProducts,
-    },
-    {
-      id: "fan",
-      name: "Quạt điện",
-      description: "Quạt không cánh, quạt đứng, quạt cây êm ái Fujihome, Panasonic, Toshiba, Xiaomi...",
-      image: fanProducts[0].image,
-      data: fanProducts,
-    },
-    {
-      id: "air-purifier",
-      name: "Máy lọc không khí",
-      description: "Lọc bụi mịn PM2.5, diệt khuẩn khử mùi phòng ngủ Xiaomi, Sharp, Dyson...",
-      image: purifierProducts[0].image,
-      data: purifierProducts,
-    },
-    {
-      id: "dehumidifier",
-      name: "Máy hút ẩm",
-      description: "Hút ẩm chống nấm mốc mùa nồm Dorosin, Kosmen, Sharp, FujiE...",
-      image: dehumidifierProducts[0].image,
-      data: dehumidifierProducts,
-    },
-    {
-      id: "hair-styler",
-      name: "Máy tạo kiểu tóc",
-      description: "Máy uốn tóc xoăn, máy là thẳng tóc phủ Keratin Dyson, Vivid & Vogue...",
-      image: stylerProducts[0].image,
-      data: stylerProducts,
-    },
-    {
-      id: "essential-diffuser",
-      name: "Máy xông tinh dầu",
-      description: "Máy phun sương khuếch tán tinh dầu thư giãn Haeva, Kodo, Xiaomi...",
-      image: diffuserProducts[0].image,
-      data: diffuserProducts,
-    },
-    {
-      id: "knives",
-      name: "Dao kéo các loại",
-      description: "Bộ dao làm bếp, kéo cắt thức ăn thép không gỉ sắc bén Kiwi, Zwilling...",
-      image: knifeProducts[0].image,
-      data: knifeProducts,
-    },
+    { id: "hair-dryer", name: "Máy sấy tóc", description: "Máy sấy tóc ion âm...", image: hairDryerProducts[0].image, data: hairDryerProducts },
+    { id: "electric-toothbrush", name: "Bàn chải điện", description: "Bàn chải đánh răng điện...", image: toothbrushProducts[0].image, data: toothbrushProducts },
+    { id: "water-flosser", name: "Máy tăm nước", description: "Máy tăm nước cầm tay...", image: flosserProducts[0].image, data: flosserProducts },
+    { id: "fan", name: "Quạt điện", description: "Quạt không cánh, quạt cây...", image: fanProducts[0].image, data: fanProducts },
+    { id: "air-purifier", name: "Máy lọc không khí", description: "Lọc bụi mịn PM2.5...", image: purifierProducts[0].image, data: purifierProducts },
+    { id: "dehumidifier", name: "Máy hút ẩm", description: "Hút ẩm chống nấm mốc...", image: dehumidifierProducts[0].image, data: dehumidifierProducts },
+    { id: "hair-styler", name: "Máy tạo kiểu tóc", description: "Máy uốn tóc xoăn...", image: stylerProducts[0].image, data: stylerProducts },
+    { id: "essential-diffuser", name: "Máy xông tinh dầu", description: "Phun sương khuếch tán...", image: diffuserProducts[0].image, data: diffuserProducts },
+    { id: "knives", name: "Dao kéo các loại", description: "Bộ dao làm bếp...", image: knifeProducts[0].image, data: knifeProducts },
   ];
 
   const handleOpenCategory = (categoryId: string) => {
@@ -346,7 +274,7 @@ QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
                         <img 
                           src={item.image} 
                           alt={item.name} 
-                          className="w-full h-full object-contain group-hover:scale-105 transition duration-300" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
                         />
                       </div>
 
@@ -385,7 +313,7 @@ QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
         {/* 2. TRANG CHI TIẾT SẢN PHẨM */}
         {currentView === "detail" && selectedProduct && (
           <div className="space-y-6">
-            {/* Breadcrumb */}
+            {/* Đường dẫn */}
             <div className="flex items-center gap-2 text-sm text-gray-500">
               <span onClick={() => setCurrentView("home")} className="cursor-pointer hover:underline">Trang chủ</span>
               <span>&gt;</span>
@@ -396,103 +324,103 @@ QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
               <span className="text-gray-900 font-medium line-clamp-1">{selectedProduct.name}</span>
             </div>
 
-            {/* Khối chính: Ảnh + Giá & Đặt hàng */}
-            <div className="bg-white rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Cột trái: Ảnh chính & Bộ sưu tập ảnh */}
+            {/* Khối Trên: Ảnh + Mua hàng */}
+            <div className="bg-white rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8 border">
+              {/* Cột trái: Ảnh sản phẩm */}
               <div>
-                <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 border flex items-center justify-center p-2">
-                  <img src={selectedImage} alt={selectedProduct.name} className="w-full h-full object-contain" />
+                <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 border flex items-center justify-center">
+                  <img src={selectedImage} alt={selectedProduct.name} className="w-full h-full object-cover" />
                 </div>
 
-                {/* Bộ sưu tập ảnh nhỏ */}
+                {/* Gallery ảnh nhỏ */}
                 {selectedProduct.images && selectedProduct.images.length > 0 && (
                   <div className="flex gap-2 overflow-x-auto pb-2">
                     {selectedProduct.images.map((imgUrl: string, idx: number) => (
                       <button
                         key={idx}
                         onClick={() => setSelectedImage(imgUrl)}
-                        className={`w-16 h-16 rounded-md border flex-shrink-0 overflow-hidden p-1 ${
+                        className={`w-16 h-16 rounded-md border flex-shrink-0 overflow-hidden ${
                           selectedImage === imgUrl ? "border-blue-600 border-2" : "border-gray-200 opacity-70 hover:opacity-100"
                         }`}
                       >
-                        <img src={imgUrl} alt={`Ảnh ${idx + 1}`} className="w-full h-full object-contain" />
+                        <img src={imgUrl} alt={`Ảnh ${idx + 1}`} className="w-full h-full object-cover" />
                       </button>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Cột phải: Tên, Giá, Chọn số lượng & Mua hàng */}
+              {/* Cột phải: Giá + Nút Mua */}
               <div className="flex flex-col justify-between">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 leading-snug mb-3">
                     <span className="text-blue-700 font-extrabold">[{selectedProduct.brand}]</span> {selectedProduct.name}
                   </h2>
 
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-5">
                     <span className="text-amber-500 font-bold">⭐ {selectedProduct.rating}</span>
                     <span>|</span>
-                    <span className="text-green-600 font-medium">Chính hãng 100%</span>
+                    <span className="text-green-600 font-medium">Chính hãng FUJIHOME</span>
                   </div>
 
-                  {/* Giá sản phẩm */}
-                  <div className="bg-gray-50 p-4 rounded-lg border mb-6 flex items-center gap-4">
-                    <span className="text-3xl font-bold text-red-600">
+                  {/* Khối giá */}
+                  <div className="bg-red-50/60 p-4 rounded-xl border border-red-100 mb-6 flex items-baseline gap-4">
+                    <span className="text-3xl font-extrabold text-red-600">
                       {selectedProduct.price.toLocaleString("vi-VN")} đ
                     </span>
                     <span className="text-sm text-gray-400 line-through">
                       {selectedProduct.originalPrice.toLocaleString("vi-VN")} đ
                     </span>
-                    <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">
+                    <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
                       {selectedProduct.discount}
                     </span>
                   </div>
 
-                  {/* Ưu đãi cam kết ngắn */}
-                  <div className="space-y-2 text-xs text-gray-600 mb-6 bg-blue-50/50 p-3 rounded-lg border border-blue-100">
-                    <div className="flex items-center gap-2">
-                      <span className="text-blue-600">✔</span>
-                      <span>Bảo hành chính hãng 24 tháng theo tem điện tử.</span>
+                  {/* Cam kết mua hàng ngắn */}
+                  <div className="space-y-2.5 text-xs text-gray-700 mb-6 bg-blue-50/40 p-4 rounded-xl border border-blue-100">
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="text-blue-600 text-sm">✓</span> Hàng Nhập Khẩu chính hãng, đầy đủ CO-CQ.
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-blue-600">✔</span>
-                      <span>1 đổi 1 trong vòng 7 ngày nếu lỗi từ nhà sản xuất.</span>
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="text-blue-600 text-sm">✓</span> Bảo hành điện tử chính hãng 24 tháng.
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-blue-600">✔</span>
-                      <span>Giao hỏa tốc 2h tại Hà Nội - TP.HCM - Đà Nẵng.</span>
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="text-blue-600 text-sm">✓</span> Lỗi 1 đổi 1 trong 7 ngày.
+                    </div>
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="text-blue-600 text-sm">✓</span> Giao hỏa tốc 2H tại Hà Nội - HCM - Đà Nẵng.
                     </div>
                   </div>
 
-                  {/* Số lượng */}
+                  {/* Chọn số lượng */}
                   <div className="flex items-center gap-4 py-4 border-t border-b text-sm mb-6">
                     <span className="text-gray-600 font-medium w-20">Số Lượng:</span>
-                    <div className="flex items-center border rounded-md">
-                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3 py-1 border-r hover:bg-gray-100 font-bold">-</button>
-                      <span className="px-5 py-1 font-semibold">{quantity}</span>
-                      <button onClick={() => setQuantity(quantity + 1)} className="px-3 py-1 border-l hover:bg-gray-100 font-bold">+</button>
+                    <div className="flex items-center border rounded-lg bg-white">
+                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3.5 py-1.5 border-r hover:bg-gray-100 font-bold">-</button>
+                      <span className="px-6 py-1.5 font-bold">{quantity}</span>
+                      <button onClick={() => setQuantity(quantity + 1)} className="px-3.5 py-1.5 border-l hover:bg-gray-100 font-bold">+</button>
                     </div>
                   </div>
                 </div>
 
-                {/* Nút hành động */}
+                {/* Các nút bấm */}
                 <div className="grid grid-cols-2 gap-4">
-                  <button onClick={addToCart} className="bg-blue-50 text-blue-600 border border-blue-600 font-bold py-3 rounded-lg hover:bg-blue-100 transition">
+                  <button onClick={addToCart} className="bg-blue-50 text-blue-600 border border-blue-600 font-bold py-3.5 rounded-xl hover:bg-blue-100 transition">
                     🛒 Thêm Vào Giỏ Hàng
                   </button>
-                  <button onClick={addToCart} className="bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-md">
+                  <button onClick={addToCart} className="bg-red-600 text-white font-bold py-3.5 rounded-xl hover:bg-red-700 transition shadow-md">
                     🛍️ MUA NGAY
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Khối bên dưới: MÔ TẢ CHI TIẾT SẢN PHẨM & THÔNG SỐ KỸ THUẬT */}
+            {/* KHỐI DƯỚI: THÔNG TIN CHI TIẾT SẢN PHẨM & THÔNG SỐ KỸ THUẬT */}
             <div className="bg-white rounded-xl p-6 shadow-sm border">
               <h3 className="text-lg font-bold text-gray-900 border-b pb-3 mb-4 flex items-center gap-2">
                 📝 CHI TIẾT SẢN PHẨM & THÔNG SỐ KỸ THUẬT
               </h3>
-              <div className="whitespace-pre-line text-sm text-gray-700 leading-relaxed bg-gray-50 p-6 rounded-lg border border-gray-100 font-sans">
+              <div className="whitespace-pre-line text-sm text-gray-700 leading-relaxed bg-gray-50 p-6 rounded-xl border border-gray-200">
                 {selectedProduct.description}
               </div>
             </div>
