@@ -51,20 +51,73 @@ export default function HomeShop() {
     description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
   }));
 
-  // 4. Quạt điện (10 sản phẩm)
-  const fanProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `fn-${i + 1}`,
-    brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
-    name: `Quạt Điện Đứng / Quạt Không Cánh FN-${i + 1}`,
-    price: 420000 + i * 190000,
-    originalPrice: 600000 + i * 250000,
-    discount: `-${18 + (i % 10)}%`,
-    rating: "4.8/5 (310)",
-    image: "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=500&q=80",
-    description: "Động cơ DC inverter tiết kiệm điện, vận hành êm ái, nhiều tốc độ gió và có điều khiển từ xa.",
-  }));
+  // 4. Quạt điện (10 sản phẩm) - ĐÃ CẬP NHẬT SẢN PHẨM ĐẦU TIÊN THEO FUJIHOME BF15 HEPA VOICE
+  const fanProducts = [
+    {
+      id: "fn-1",
+      brand: "Fujihome",
+      name: "Quạt không cánh lọc khí HEPA Nhập Khẩu FUJIHOME BF15 HEPA VOICE, Quạt điều khiển giọng nói Inverter tiết kiệm điện",
+      price: 2490000,
+      originalPrice: 3500000,
+      discount: "-29%",
+      rating: "5.0/5 (450)",
+      image: "vn-11134207-81ztc-mqfp79vvk6bz77.webp",
+      images: [
+        "vn-11134207-81ztc-mqfp79vvk6bz77.webp",
+        "vn-11134207-81ztc-mqcr4jrod8g24c.webp",
+        "vn-11134207-81ztc-mqcr4jroen0ied.webp",
+        "vn-11134207-81ztc-mqcr4jrpozr5c2.webp",
+        "vn-11134207-81ztc-mqcr4jrwsn40c4.webp",
+        "vn-11134207-81ztc-mqfoq05lv2m8b7.webp",
+        "vn-11134207-81ztc-mqfor4wld1xp31.webp",
+        "vn-11134207-81ztc-mqfor4wschl7ee.webp",
+        "vn-11134207-81ztc-mqcr4jrobtvm98.webp",
+      ],
+      description: `⭐ MUA HÀNG TẠI FUJIHOME VIỆT NAM - LÀ GIAN HÀNG CHÍNH HÃNG CỦA CÔNG TY TNHH FUJIHOME VIỆT NAM !
 
-  // 5. Máy lọc không khí (10 sản phẩm)
+📌 FUJIHOME VIỆT NAM CAM KẾT:
+- Hàng Nhập Khẩu chính hãng, đầy đủ giấy tờ CO-CQ.
+- Bảo hành ĐIỆN TỬ theo tem điện tử trên sản phẩm (1- 5 năm tuỳ sản phẩm).
+- Lỗi 1 đổi 1 trong vòng 7 ngày nếu phát sinh lỗi từ phía nhà sản xuất.
+- Đổi trả miễn phí nếu sản phẩm có lỗi NSX hoặc giao sai hàng.
+
+🚚 GIAO HOẢ TỐC 2H TẠI HÀ NỘI - HỒ CHÍ MINH - ĐÀ NẴNG.
+
+QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
+[ Đối lưu không khí - Lọc không khí 3 lớp - HEPA - UV - Ionizer - Điều khiển thông minh giọng nói ]
+
+✅ ƯU ĐIỂM VƯỢT TRỘI:
+• 3 chế độ điều khiển thông minh: Điều khiển giọng nói tiếng Việt + Điều khiển từ xa + Cảm ứng.
+• Bộ lọc 3 lớp thông minh HEPA + UV + Ionizer giúp loại bỏ bụi mịn, vi khuẩn, mùi khó chịu.
+• Động cơ DC Inverter tiết kiệm điện vượt trội, vận hành êm, không rung lắc, tăng tuổi thọ.
+• Trang bị 32 mức gió và 4 chế độ thông minh (Gió thường, Gió ngủ, Gió trẻ em, Gió thông minh).
+• Chức năng tạo ẩm 90ml/h, bình nước 135ml giúp không khí dễ chịu, giảm khô da.
+• Thiết kế không cánh hiện đại, an toàn tuyệt đối cho trẻ nhỏ, dễ lau chùi.
+• Góc xoay rộng 60 độ giúp làm mát đều khắp phòng.
+
+✅ THÔNG SỐ KỸ THUẬT:
+• Điện áp: 220 – 240V / 50 – 60Hz | Công suất: 50W
+• Động cơ: Inverter DC tiết kiệm điện | Màn hình: LED
+• Số cấp gió: 32 cấp | Hẹn giờ: Tối đa 15 tiếng | Góc xoay: 60°
+• Bình nước tạo ẩm: 135ml (Công suất 90ml/h)
+• Thân máy: Nhựa ABS cao cấp
+• Kích thước sản phẩm: 237 x 237 x 1100mm | Trọng lượng: 4.7kg
+• Bảo hành: 24 tháng chính hãng | Xuất xứ: Trung Quốc`,
+    },
+    ...Array.from({ length: 9 }, (_, i) => ({
+      id: `fn-${i + 2}`,
+      brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
+      name: `Quạt Điện Đứng / Quạt Cây Cao Cấp FN-${i + 2}`,
+      price: 420000 + (i + 1) * 190000,
+      originalPrice: 600000 + (i + 1) * 250000,
+      discount: `-${18 + (i % 10)}%`,
+      rating: "4.8/5 (310)",
+      image: "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=500&q=80",
+      description: "Động cơ DC inverter tiết kiệm điện, vận hành êm ái, nhiều tốc độ gió và có điều khiển từ xa.",
+    })),
+  ];
+
+  // 5. Máy lọc không khí
   const purifierProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `ap-${i + 1}`,
     brand: ["Xiaomi", "Sharp", "Dyson", "Philips", "Samsung"][i % 5],
@@ -77,7 +130,7 @@ export default function HomeShop() {
     description: "Màng lọc HEPA diệt khuẩn khử mùi, lọc sạch bụi mịn PM2.5, kết nối ứng dụng điện thoại thông minh.",
   }));
 
-  // 6. Máy hút ẩm (10 sản phẩm)
+  // 6. Máy hút ẩm
   const dehumidifierProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `dh-${i + 1}`,
     brand: ["Dorosin", "Kosmen", "Sharp", "Electrolux", "FujiE"][i % 5],
@@ -90,7 +143,7 @@ export default function HomeShop() {
     description: "Hút ẩm nhanh chóng bảo vệ đồ gỗ và sức khỏe, dung tích lọc lớn, tích hợp chức năng sấy quần áo.",
   }));
 
-  // 7. Máy tạo kiểu tóc (10 sản phẩm)
+  // 7. Máy tạo kiểu tóc
   const stylerProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `st-${i + 1}`,
     brand: ["Dyson", "Philips", "Flyco", "Vivid & Vogue", "Tesco"][i % 5],
@@ -103,7 +156,7 @@ export default function HomeShop() {
     description: "Mặt gốm phay mịn phủ gốm Keratin dưỡng tóc, gia nhiệt nhanh trong 30 giây, tạo kiểu tóc giữ nếp cả ngày.",
   }));
 
-  // 8. Máy xông tinh dầu (10 sản phẩm)
+  // 8. Máy xông tinh dầu
   const diffuserProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `df-${i + 1}`,
     brand: ["Haeva", "Kodo", "Xiaomi", "LocknLock", "Bear"][i % 5],
@@ -127,110 +180,6 @@ export default function HomeShop() {
     rating: "4.9/5 (110)",
     image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?w=500&q=80",
     description: "Lưỡi thép không gỉ sắc bén, tay cầm chống trượt đầm tay, hỗ trợ gọt hoa quả, thái thịt, chặt xương dễ dàng.",
-  }));
-
-  // 10. Bếp từ nấu lẩu
-  const inductionProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `ic-${i + 1}`,
-    brand: ["Sunhouse", "Kangaroo", "Midea", "Philips", "BlueStone"][i % 5],
-    name: `Bếp Từ Đơn Nấu Lẩu & Nấu Ăn Cảm Ứng IC-${i + 1}`,
-    price: 650000 + i * 120000,
-    originalPrice: 950000 + i * 150000,
-    discount: `-${20 + (i % 12)}%`,
-    rating: "4.8/5 (230)",
-    image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&q=80",
-    description: "Mặt kính chịu nhiệt chịu lực tốt, công suất 2000W đun nấu siêu nhanh, nhiều chế độ nấu tiện lợi.",
-  }));
-
-  // 11. Nồi & Chảo Inox
-  const cookwareProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `cw-${i + 1}`,
-    brand: ["Sunhouse", "Elmich", "Fissler", "Goldsun", "Kangaroo"][i % 5],
-    name: `Nồi / Chảo Inox Cao Cấp Mẫu ${i + 1}`,
-    price: 350000 + i * 120000,
-    originalPrice: 500000 + i * 150000,
-    discount: `-${15 + (i % 20)}%`,
-    rating: "4.8/5 (120)",
-    image: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80",
-    description: "Chất liệu Inox cao cấp chống gỉ, truyền nhiệt nhanh, đáy 3 lớp dùng tốt trên mọi loại bếp.",
-  }));
-
-  // 12. Lò vi sóng
-  const microwaveProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `mw-${i + 1}`,
-    brand: ["Sharp", "Toshiba", "Panasonic", "Electrolux", "Samsung"][i % 5],
-    name: `Lò Vi Sóng Điện Tử / Cơ Model MS-${i + 1}`,
-    price: 1200000 + i * 180000,
-    originalPrice: 1600000 + i * 200000,
-    discount: `-${18 + (i % 12)}%`,
-    rating: "4.9/5 (95)",
-    image: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500&q=80",
-    description: "Dung tích lớn, tích hợp chức năng rã đông nhanh, hâm nóng đồng đều và chế độ nướng tiện lợi.",
-  }));
-
-  // 13. Nồi chiên không dầu
-  const airFryerProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `af-${i + 1}`,
-    brand: ["Philips", "LocknLock", "BlueStone", "Sunhouse", "Magic"][i % 5],
-    name: `Nồi Chiên Không Dầu AF-${i + 1}`,
-    price: 1100000 + i * 150000,
-    originalPrice: 1500000 + i * 180000,
-    discount: `-${20 + (i % 15)}%`,
-    rating: "4.8/5 (210)",
-    image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?w=500&q=80",
-    description: "Công nghệ chiên đối lưu Rapid Air giảm 90% mỡ thừa, lòng nồi phủ chống dính cao cấp.",
-  }));
-
-  // 14. Nồi cơm điện
-  const riceCookerProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `rc-${i + 1}`,
-    brand: ["Panasonic", "Toshiba", "Cuckoo", "Sunhouse", "LocknLock"][i % 5],
-    name: `Nồi Cơm Điện Cao Cấp RC-${i + 1}`,
-    price: 450000 + i * 130000,
-    originalPrice: 650000 + i * 160000,
-    discount: `-${15 + (i % 10)}%`,
-    rating: "4.9/5 (180)",
-    image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mpdc8c60r9c267",
-    description: "Gia nhiệt 3D giúp hạt cơm chín đều, dẻo ngon. Lòng nồi dày chống dính an toàn sức khỏe.",
-  }));
-
-  // 15. Robot hút bụi
-  const robotProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `rb-${i + 1}`,
-    brand: ["Ecovacs", "Xiaomi", "Dreame", "Roborock", "Neato"][i % 5],
-    name: `Robot Hút Bụi Lau Nhà RB-${i + 1}`,
-    price: 3200000 + i * 450000,
-    originalPrice: 4500000 + i * 500000,
-    discount: `-${22 + (i % 10)}%`,
-    rating: "5.0/5 (150)",
-    image: "https://down-vn.img.susercontent.com/file/vn-11134207-81ztc-mmqu2t5a4j60cb",
-    description: "Lực hút siêu mạnh, định vị Laser lập bản đồ nhà thông minh, tự động sạc điện khi hết pin.",
-  }));
-
-  // 16. Đèn bàn thông minh
-  const lampProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `lp-${i + 1}`,
-    brand: ["Xiaomi", "Philips", "Điện Quang", "Rạng Đông", "Baseus"][i % 5],
-    name: `Đèn Bàn LED Chống Cận Thị DL-${i + 1}`,
-    price: 250000 + i * 60000,
-    originalPrice: 380000 + i * 80000,
-    discount: `-${20 + (i % 10)}%`,
-    rating: "4.9/5 (85)",
-    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80",
-    description: "Ánh sáng liên tục không nhấp nháy bảo vệ mắt, nhiều chế độ sáng cảm ứng linh hoạt.",
-  }));
-
-  // 17. Kệ tủ đồ đa năng
-  const shelfProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: `sf-${i + 1}`,
-    brand: ["HomeDecor", "IBIE", "Baya", "Đại Đồng Tiến", "Song Long"][i % 5],
-    name: `Kệ Để Đồ Đa Năng KS-${i + 1}`,
-    price: 390000 + i * 90000,
-    originalPrice: 550000 + i * 110000,
-    discount: `-${25 + (i % 8)}%`,
-    rating: "4.8/5 (95)",
-    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&q=80",
-    description: "Chịu lực tốt, lắp ráp dễ dàng, chất liệu bền đẹp tối ưu không gian sống gọn gàng.",
   }));
 
   // Danh mục hiển thị ở Trang chủ
@@ -259,7 +208,7 @@ export default function HomeShop() {
     {
       id: "fan",
       name: "Quạt điện",
-      description: "Quạt đứng, quạt cây, quạt không cánh êm ái Panasonic, Toshiba, Xiaomi...",
+      description: "Quạt không cánh, quạt đứng, quạt cây êm ái Fujihome, Panasonic, Toshiba, Xiaomi...",
       image: fanProducts[0].image,
       data: fanProducts,
     },
@@ -298,62 +247,6 @@ export default function HomeShop() {
       image: knifeProducts[0].image,
       data: knifeProducts,
     },
-    {
-      id: "induction-cooker",
-      name: "Bếp từ nấu lẩu",
-      description: "Bếp từ đơn, bếp từ đôi đun nấu siêu nhanh Sunhouse, Kangaroo, Midea...",
-      image: inductionProducts[0].image,
-      data: inductionProducts,
-    },
-    {
-      id: "cookware",
-      name: "Nồi & Chảo Inox",
-      description: "Bộ nồi inox 3 đáy, chảo chống dính dùng cho mọi loại bếp...",
-      image: cookwareProducts[0].image,
-      data: cookwareProducts,
-    },
-    {
-      id: "microwave",
-      name: "Lò vi sóng",
-      description: "Hâm nóng, rã đông, tích hợp nướng Sharp, Toshiba, Panasonic...",
-      image: microwaveProducts[0].image,
-      data: microwaveProducts,
-    },
-    {
-      id: "air-fryer",
-      name: "Nồi chiên không dầu",
-      description: "Chiên giòn giảm 90% mỡ thừa Philips, LocknLock, BlueStone...",
-      image: airFryerProducts[0].image,
-      data: airFryerProducts,
-    },
-    {
-      id: "rice-cooker",
-      name: "Nồi cơm điện",
-      description: "Đa dạng các dòng nồi Panasonic, Toshiba, Sunhouse, LocknLock...",
-      image: riceCookerProducts[0].image,
-      data: riceCookerProducts,
-    },
-    {
-      id: "robot",
-      name: "Robot hút bụi",
-      description: "Tự động hút bụi, lau nhà thông minh, lập bản đồ Laser...",
-      image: robotProducts[0].image,
-      data: robotProducts,
-    },
-    {
-      id: "lamp",
-      name: "Đèn bàn thông minh",
-      description: "Bảo vệ mắt chống cận thị, điều chỉnh độ sáng cảm ứng...",
-      image: lampProducts[0].image,
-      data: lampProducts,
-    },
-    {
-      id: "shelf",
-      name: "Kệ để đồ đa năng",
-      description: "Kệ gỗ, kệ sắt nhiều tầng giúp sắp xếp nhà cửa gọn gàng...",
-      image: shelfProducts[0].image,
-      data: shelfProducts,
-    },
   ];
 
   const handleOpenCategory = (categoryId: string) => {
@@ -390,14 +283,12 @@ export default function HomeShop() {
           </h1>
           <nav className="hidden md:flex space-x-3 text-gray-700 font-medium text-xs lg:text-sm overflow-x-auto py-2">
             <button onClick={() => setCurrentView("home")} className="hover:text-blue-600 whitespace-nowrap">Trang chủ</button>
-            <button onClick={() => handleOpenCategory("hair-dryer")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy sấy tóc</button>
-            <button onClick={() => handleOpenCategory("electric-toothbrush")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Bàn chải điện</button>
-            <button onClick={() => handleOpenCategory("water-flosser")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy tăm nước</button>
+            <button onClick={() => handleOpenCategory("hair-dryer")} className="hover:text-blue-600 whitespace-nowrap">Máy sấy tóc</button>
+            <button onClick={() => handleOpenCategory("electric-toothbrush")} className="hover:text-blue-600 whitespace-nowrap">Bàn chải điện</button>
+            <button onClick={() => handleOpenCategory("water-flosser")} className="hover:text-blue-600 whitespace-nowrap">Máy tăm nước</button>
             <button onClick={() => handleOpenCategory("fan")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Quạt điện</button>
-            <button onClick={() => handleOpenCategory("air-purifier")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Máy lọc khí</button>
+            <button onClick={() => handleOpenCategory("air-purifier")} className="hover:text-blue-600 whitespace-nowrap">Máy lọc khí</button>
             <button onClick={() => handleOpenCategory("dehumidifier")} className="hover:text-blue-600 whitespace-nowrap">Máy hút ẩm</button>
-            <button onClick={() => handleOpenCategory("hair-styler")} className="hover:text-blue-600 whitespace-nowrap">Tạo kiểu tóc</button>
-            <button onClick={() => handleOpenCategory("essential-diffuser")} className="hover:text-blue-600 whitespace-nowrap">Xông tinh dầu</button>
           </nav>
           <div className="relative">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition text-sm">
@@ -487,20 +378,39 @@ export default function HomeShop() {
                 {getActiveCategoryData().name}
               </span>
               <span>&gt;</span>
-              <span className="text-gray-900 font-medium">{selectedProduct.name}</span>
+              <span className="text-gray-900 font-medium line-clamp-1">{selectedProduct.name}</span>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Cột ảnh sản phẩm + Album ảnh */}
               <div>
-                <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 border flex items-center justify-center p-4">
+                <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 border flex items-center justify-center p-2">
                   <img src={selectedImage} alt={selectedProduct.name} className="w-full h-full object-contain" />
                 </div>
+
+                {/* Danh sách ảnh nhỏ nếu có gallery */}
+                {selectedProduct.images && selectedProduct.images.length > 0 && (
+                  <div className="flex gap-2 overflow-x-auto pb-2">
+                    {selectedProduct.images.map((imgUrl: string, idx: number) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImage(imgUrl)}
+                        className={`w-16 h-16 rounded-md border flex-shrink-0 overflow-hidden p-1 ${
+                          selectedImage === imgUrl ? "border-blue-600 border-2" : "border-gray-200 opacity-70 hover:opacity-100"
+                        }`}
+                      >
+                        <img src={imgUrl} alt={`Ảnh ${idx + 1}`} className="w-full h-full object-contain" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
+              {/* Cột thông tin chi tiết */}
               <div className="flex flex-col justify-between">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 leading-snug">
-                    {selectedProduct.name}
+                  <h2 className="text-lg font-bold text-gray-900 leading-snug">
+                    <span className="text-blue-700 font-extrabold">[{selectedProduct.brand}]</span> {selectedProduct.name}
                   </h2>
 
                   <div className="flex items-center gap-3 my-4">
@@ -510,9 +420,14 @@ export default function HomeShop() {
                     <span className="text-sm text-gray-400 line-through">
                       {selectedProduct.originalPrice.toLocaleString("vi-VN")} đ
                     </span>
+                    <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">
+                      {selectedProduct.discount}
+                    </span>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-4">{selectedProduct.description}</p>
+                  <div className="whitespace-pre-line text-xs text-gray-600 mb-4 bg-gray-50 p-4 rounded-lg border max-h-72 overflow-y-auto leading-relaxed">
+                    {selectedProduct.description}
+                  </div>
 
                   <div className="space-y-3 py-4 border-t border-b text-sm">
                     <div className="flex items-center gap-4">
@@ -551,7 +466,7 @@ export default function HomeShop() {
                 >
                   <div>
                     <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-50 mb-3">
-                      <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                      <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider z-10">
                         DANH MỤC
                       </span>
                       <img 
