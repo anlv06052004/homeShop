@@ -51,7 +51,7 @@ export default function HomeShop() {
     description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
   }));
 
-  // 4. Quạt điện  (10 sản phẩm)
+  // 4. Quạt điện (10 sản phẩm)
   const fanProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `fn-${i + 1}`,
     brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
@@ -60,7 +60,7 @@ export default function HomeShop() {
     originalPrice: 600000 + i * 250000,
     discount: `-${18 + (i % 10)}%`,
     rating: "4.8/5 (310)",
-    image: "https://images.unsplash.com/photo-1618941723616-9584d47c34d3?w=500&q=80",
+    image: "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=500&q=80",
     description: "Động cơ DC inverter tiết kiệm điện, vận hành êm ái, nhiều tốc độ gió và có điều khiển từ xa.",
   }));
 
@@ -258,7 +258,7 @@ export default function HomeShop() {
     },
     {
       id: "fan",
-      name: "Quạt điện các loại",
+      name: "Quạt điện",
       description: "Quạt đứng, quạt cây, quạt không cánh êm ái Panasonic, Toshiba, Xiaomi...",
       image: fanProducts[0].image,
       data: fanProducts,
