@@ -51,7 +51,7 @@ export default function HomeShop() {
     description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
   }));
 
-  // 4. Quạt điện các loại (10 sản phẩm)
+  // 4. Quạt điện  (10 sản phẩm)
   const fanProducts = Array.from({ length: 10 }, (_, i) => ({
     id: `fn-${i + 1}`,
     brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
