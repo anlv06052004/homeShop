@@ -2,56 +2,80 @@
 
 import React, { useState } from "react";
 
-// Dữ liệu bộ ảnh thực tế Quạt Fujihome BF15
-const FUJIHOME_IMAGES = [
-  {
-    id: "banner-shopee",
-    title: "Ảnh Banner Shopee Mall (Đại diện chính)",
-    url: "https://cf.shopee.vn/file/vn-11134207-81ztc-mqflf6omt2j04f",
-  },
-  {
-    id: "feature-voice",
-    title: "Điều khiển giọng nói tiếng Việt",
-    url: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-luxury-3-1.jpg",
-  },
-  {
-    id: "feature-hepa",
-    title: "Hệ thống lọc HEPA 3 lớp",
-    url: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-50w-h-11-639116753349693653.jpg",
-  },
-  {
-    id: "feature-speed",
-    title: "32 Cấp gió tinh chỉnh",
-    url: "https://fujihomevn.com/images/quat-khong-canh-ket-hop-loc-khong-khi-dieu-khien-giong-noi-fujihome-bf15-hepa-voice--co_50d92164.webp",
-  },
-  {
-    id: "feature-safe",
-    title: "An toàn cho trẻ nhỏ & Thiết kế không cánh",
-    url: "https://fujihomevn.com/images/quat-khong-canh-loc-khong-khi-fujihome-luxury-bf15-hepa-voice-2.webp",
-  },
-];
+export default function HomeShop() {
+  const [currentView, setCurrentView] = useState<"home" | "category" | "detail">("home");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>(1);
+  const [cartCount, setCartCount] = useState<number>(0);
 
-// Danh sách tất cả sản phẩm
-const PRODUCTS = [
-  {
-    id: "fujihome-bf15",
-    categoryId: "fan",
-    categoryName: "Quạt điện",
-    brand: "Fujihome",
-    name: "Quạt không cánh lọc khí HEPA Nhập Khẩu FUJIHOME BF15 HEPA VOICE",
-    price: 2490000,
-    originalPrice: 3500000,
-    discount: "-29%",
-    rating: "5.0/5 (450)",
-    mainImage: FUJIHOME_IMAGES[0].url,
-    images: FUJIHOME_IMAGES,
-    description: `⭐ MUA HÀNG TẠI FUJIHOME VIỆT NAM - GIAN HÀNG CHÍNH HÃNG CỦA CÔNG TY TNHH FUJIHOME VIỆT NAM !
+  // Bộ ảnh mẫu ổn định không bao giờ bị lỗi CDN
+  const FAN_IMAGES = [
+    "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=800&q=80",
+    "https://images.unsplash.com/photo-1618961734760-466979ce35b0?w=800&q=80",
+    "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&q=80",
+    "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+  ];
+
+  // 1. Máy sấy tóc
+  const hairDryerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `hd-${i + 1}`,
+    brand: ["Dyson", "Panasonic", "Philips", "Flyco", "Xiaomi"][i % 5],
+    name: `Máy Sấy Tóc Tạo Kiểu Chăm Sóc Tóc HD-${i + 1}`,
+    price: 290000 + i * 150000,
+    originalPrice: 450000 + i * 200000,
+    discount: `-${20 + (i % 10)}%`,
+    rating: "4.9/5 (180)",
+    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80",
+    description: "Công suất mạnh mẽ, bổ sung ion âm bảo vệ tóc không bị khô xơ, nhiều chế độ sấy nóng/lạnh linh hoạt.",
+  }));
+
+  // 2. Bàn chải đánh răng điện
+  const toothbrushProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `tb-${i + 1}`,
+    brand: ["Oral-B", "Philips Sonicare", "USmile", "Halio", "Xiaomi"][i % 5],
+    name: `Bàn Chải Đánh Răng Điện Sóng Âm TB-${i + 1}`,
+    price: 350000 + i * 120000,
+    originalPrice: 500000 + i * 160000,
+    discount: `-${25 + (i % 8)}%`,
+    rating: "4.8/5 (210)",
+    image: "https://images.unsplash.com/photo-1559591937-e68fb3305e40?w=500&q=80",
+    description: "Tần số rung siêu âm làm sạch sâu mảng bám, chế độ hẹn giờ thông minh 2 phút, chống nước IPX7.",
+  }));
+
+  // 3. Máy tăm nước
+  const flosserProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `wf-${i + 1}`,
+    brand: ["Waterpik", "Panasonic", "Procare", "Halio", "Xiaomi"][i % 5],
+    name: `Máy Tăm Nước Cầm Tay Vệ Sinh Răng Miệng WF-${i + 1}`,
+    price: 550000 + i * 180000,
+    originalPrice: 800000 + i * 220000,
+    discount: `-${22 + (i % 12)}%`,
+    rating: "4.9/5 (165)",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&q=80",
+    description: "Áp lực nước siêu mạnh vệ sinh sạch kẽ răng và mắc cài niềng răng, dung tích bình chứa lớn tiện lợi.",
+  }));
+
+  // 4. Quạt điện (Dùng bộ ảnh Unsplash để load nhanh và không vỡ)
+  const fanProducts = [
+    {
+      id: "fn-1",
+      brand: "Fujihome",
+      name: "Quạt không cánh lọc khí HEPA Nhập Khẩu FUJIHOME BF15 HEPA VOICE, Quạt điều khiển giọng nói Inverter tiết kiệm điện",
+      price: 2490000,
+      originalPrice: 3500000,
+      discount: "-29%",
+      rating: "5.0/5 (450)",
+      image: FAN_IMAGES[0],
+      images: FAN_IMAGES,
+      description: `⭐ MUA HÀNG TẠI FUJIHOME VIỆT NAM - LÀ GIAN HÀNG CHÍNH HÃNG CỦA CÔNG TY TNHH FUJIHOME VIỆT NAM !
 
 📌 FUJIHOME VIỆT NAM CAM KẾT:
 - Hàng Nhập Khẩu chính hãng, đầy đủ giấy tờ CO-CQ.
-- Bảo hành ĐIỆN TỬ theo tem điện tử trên sản phẩm 24 tháng.
-- Lỗi 1 đổi 1 trong vòng 7 ngày nếu phát sinh lỗi từ nhà sản xuất.
-- Đổi trả miễn phí nếu giao sai hàng hoặc có lỗi NSX.
+- Bảo hành ĐIỆN TỬ theo tem điện tử trên sản phẩm (1 - 5 năm tuỳ sản phẩm).
+- Lỗi 1 đổi 1 trong vòng 7 ngày nếu phát sinh lỗi từ phía nhà sản xuất.
+- Đổi trả miễn phí nếu sản phẩm có lỗi NSX hoặc giao sai hàng.
 
 🚚 GIAO HOẢ TỐC 2H TẠI HÀ NỘI - HỒ CHÍ MINH - ĐÀ NẴNG.
 
@@ -59,82 +83,128 @@ QUẠT KHÔNG CÁNH LỌC KHÔNG KHÍ HEPA FUJIHOME LUXURY BF15-HEPA-VOICE
 [ Đối lưu không khí - Lọc không khí 3 lớp - HEPA - UV - Ionizer - Điều khiển thông minh giọng nói ]
 
 ✅ ƯU ĐIỂM VƯỢT TRỘI:
-• 3 chế độ điều khiển thông minh: Điều khiển giọng nói tiếng Việt + Điều khiển từ xa + Cảm ứng 1 chạm.
-• Bộ lọc 3 lớp thông minh HEPA + UV + Ionizer giúp loại bỏ 99.97% bụi mịn và vi khuẩn.
-• Động cơ DC Inverter tiết kiệm điện vượt trội, vận hành cực kỳ êm ái.
-• 32 mức gió tinh chỉnh và 4 chế độ thông minh (Gió thường, Gió ngủ, Gió trẻ em, Gió Eco).
-• Thiết kế không cánh sang trọng, an toàn tuyệt đối cho gia đình có con nhỏ.
-• Góc xoay rộng 60 độ giúp làm mát đều khắp không gian phòng.
+• 3 chế độ điều khiển thông minh: Điều khiển giọng nói tiếng Việt + Điều khiển từ xa + Cảm ứng.
+• Bộ lọc 3 lớp thông minh HEPA + UV + Ionizer giúp loại bỏ bụi mịn, vi khuẩn, mùi khó chịu.
+• Động cơ DC Inverter tiết kiệm điện vượt trội, vận hành êm, không rung lắc.
+• Trang bị 32 mức gió và 4 chế độ thông minh (Gió thường, Gió ngủ, Gió trẻ em, Gió thông minh).
+• Chức năng tạo ẩm 90ml/h, bình nước 135ml giúp không khí dễ chịu, giảm khô da.
+• Thiết kế không cánh hiện đại, an toàn tuyệt đối cho trẻ nhỏ, dễ lau chùi.
+• Góc xoay rộng 60 độ giúp làm mát đều khắp phòng.
 
 ✅ THÔNG SỐ KỸ THUẬT:
 • Điện áp: 220 – 240V / 50 – 60Hz | Công suất: 50W
 • Động cơ: Inverter DC tiết kiệm điện | Màn hình: LED
 • Số cấp gió: 32 cấp | Hẹn giờ: Tối đa 15 tiếng | Góc xoay: 60°
-• Kích thước: 237 x 237 x 1100mm | Trọng lượng: 4.7kg
-• Bảo hành: 24 tháng chính hãng`,
-  },
-  {
-    id: "fujihome-p1",
-    categoryId: "air-purifier",
-    categoryName: "Máy lọc khí",
-    brand: "Fujihome",
-    name: "Máy Lọc Không Khí Cao Cấp Fujihome AP-01 Lọc Bụi Mịn PM2.5",
-    price: 1890000,
-    originalPrice: 2500000,
-    discount: "-24%",
-    rating: "4.8/5 (120)",
-    mainImage: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-50w-h-11-639116753349693653.jpg",
-    images: [
-      { id: "p1", title: "Máy lọc khí", url: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-50w-h-11-639116753349693653.jpg" }
-    ],
-    description: "Máy lọc không khí công suất lớn, lọc sạch PM2.5, khử mùi hiệu quả cho phòng 30m2.",
-  },
-  {
-    id: "fujihome-d1",
-    categoryId: "dehumidifier",
-    categoryName: "Máy hút ẩm",
-    brand: "Fujihome",
-    name: "Máy Hút Ẩm Dân Dụng Fujihome DH12 Chống Ẩm Mốc Mùa Nồm",
-    price: 3200000,
-    originalPrice: 4100000,
-    discount: "-22%",
-    rating: "4.9/5 (210)",
-    mainImage: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-luxury-3-1.jpg",
-    images: [
-      { id: "d1", title: "Máy hút ẩm", url: "https://fujihomevn.com/images/quat-khong-canh-fujihome-bf15-hepa-voice-luxury-3-1.jpg" }
-    ],
-    description: "Máy hút ẩm thông minh, lọc không khí, sấy quần áo nhanh chóng vào mùa mưa nồm.",
-  }
-];
+• Bình nước tạo ẩm: 135ml (Công suất 90ml/h)
+• Thân máy: Nhựa ABS cao cấp
+• Kích thước sản phẩm: 237 x 237 x 1100mm | Trọng lượng: 4.7kg
+• Bảo hành: 24 tháng chính hãng | Xuất xứ: Trung Quốc`,
+    },
+    ...Array.from({ length: 9 }, (_, i) => ({
+      id: `fn-${i + 2}`,
+      brand: ["Panasonic", "Senko", "Toshiba", "Xiaomi", "Dyson"][i % 5],
+      name: `Quạt Điện Đứng / Quạt Cây Cao Cấp FN-${i + 2}`,
+      price: 420000 + (i + 1) * 190000,
+      originalPrice: 600000 + (i + 1) * 250000,
+      discount: `-${18 + (i % 10)}%`,
+      rating: "4.8/5 (310)",
+      image: "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=500&q=80",
+      description: "Động cơ DC inverter tiết kiệm điện, vận hành êm ái, nhiều tốc độ gió và có điều khiển từ xa.",
+    })),
+  ];
 
-export default function HomeShop() {
-  // Quản lý điều hướng trang: 'home' | 'category' | 'detail'
-  const [currentView, setCurrentView] = useState<"home" | "category" | "detail">("detail");
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [selectedProductId, setSelectedProductId] = useState<string>("fujihome-bf15");
-  
-  const [quantity, setQuantity] = useState<number>(1);
-  const [cartCount, setCartCount] = useState<number>(0);
+  // 5. Máy lọc không khí
+  const purifierProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `ap-${i + 1}`,
+    brand: ["Xiaomi", "Sharp", "Dyson", "Philips", "Samsung"][i % 5],
+    name: `Máy Lọc Không Khí Diệt Khuẩn AP-${i + 1}`,
+    price: 1800000 + i * 350000,
+    originalPrice: 2500000 + i * 400000,
+    discount: `-${20 + (i % 15)}%`,
+    rating: "5.0/5 (140)",
+    image: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&q=80",
+    description: "Màng lọc HEPA diệt khuẩn khử mùi, lọc sạch bụi mịn PM2.5, kết nối ứng dụng điện thoại thông minh.",
+  }));
 
-  // Sản phẩm đang được chọn xem chi tiết
-  const currentProduct = PRODUCTS.find((p) => p.id === selectedProductId) || PRODUCTS[0];
-  const [selectedDetailImage, setSelectedDetailImage] = useState<string>(currentProduct.mainImage);
+  // 6. Máy hút ẩm
+  const dehumidifierProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `dh-${i + 1}`,
+    brand: ["Dorosin", "Kosmen", "Sharp", "Electrolux", "FujiE"][i % 5],
+    name: `Máy Hút Ẩm Chống Mốc Gia Đình DH-${i + 1}`,
+    price: 2500000 + i * 400000,
+    originalPrice: 3200000 + i * 500000,
+    discount: `-${15 + (i % 10)}%`,
+    rating: "4.9/5 (95)",
+    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=500&q=80",
+    description: "Hút ẩm nhanh chóng bảo vệ đồ gỗ và sức khỏe, dung tích lọc lớn, tích hợp chức năng sấy quần áo.",
+  }));
 
-  // Chuyển danh mục
-  const handleSelectCategory = (catId: string) => {
-    setActiveCategory(catId);
+  // 7. Máy tạo kiểu tóc
+  const stylerProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `st-${i + 1}`,
+    brand: ["Dyson", "Philips", "Flyco", "Vivid & Vogue", "Tesco"][i % 5],
+    name: `Máy Uốn Lọn / Là Thẳng Tóc Đa Năng ST-${i + 1}`,
+    price: 280000 + i * 160000,
+    originalPrice: 400000 + i * 220000,
+    discount: `-${25 + (i % 10)}%`,
+    rating: "4.8/5 (175)",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500&q=80",
+    description: "Mặt gốm phay mịn phủ gốm Keratin dưỡng tóc, gia nhiệt nhanh trong 30 giây, tạo kiểu tóc giữ nếp cả ngày.",
+  }));
+
+  // 8. Máy xông tinh dầu
+  const diffuserProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `df-${i + 1}`,
+    brand: ["Haeva", "Kodo", "Xiaomi", "LocknLock", "Bear"][i % 5],
+    name: `Máy Phun Sương Khuếch Tán Tinh Dầu DF-${i + 1}`,
+    price: 190000 + i * 80000,
+    originalPrice: 300000 + i * 110000,
+    discount: `-${30 + (i % 10)}%`,
+    rating: "4.9/5 (220)",
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=500&q=80",
+    description: "Công nghệ siêu âm tạo sương mịn, kết hợp đèn LED đổi màu sinh động, giúp thư giãn không gian phòng.",
+  }));
+
+  // 9. Dao kéo các loại
+  const knifeProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: `kn-${i + 1}`,
+    brand: ["Kiwi", "Zwilling", "Sunhouse", "LocknLock", "KAI"][i % 5],
+    name: `Bộ Dao Kéo Nhà Bếp Thép Không Gỉ Model K-${i + 1}`,
+    price: 90000 + i * 45000,
+    originalPrice: 150000 + i * 60000,
+    discount: `-${25 + (i % 10)}%`,
+    rating: "4.9/5 (110)",
+    image: "https://images.unsplash.com/photo-1593618998160-e34014e67546?w=500&q=80",
+    description: "Lưỡi thép không gỉ sắc bén, tay cầm chống trượt đầm tay, hỗ trợ gọt hoa quả, thái thịt, chặt xương dễ dàng.",
+  }));
+
+  // Danh mục hiển thị ở Trang chủ
+  const categoriesHome = [
+    { id: "hair-dryer", name: "Máy sấy tóc", description: "Máy sấy tóc ion âm...", image: hairDryerProducts[0].image, data: hairDryerProducts },
+    { id: "electric-toothbrush", name: "Bàn chải điện", description: "Bàn chải đánh răng điện...", image: toothbrushProducts[0].image, data: toothbrushProducts },
+    { id: "water-flosser", name: "Máy tăm nước", description: "Máy tăm nước cầm tay...", image: flosserProducts[0].image, data: flosserProducts },
+    { id: "fan", name: "Quạt điện", description: "Quạt không cánh, quạt cây...", image: fanProducts[0].image, data: fanProducts },
+    { id: "air-purifier", name: "Máy lọc không khí", description: "Lọc bụi mịn PM2.5...", image: purifierProducts[0].image, data: purifierProducts },
+    { id: "dehumidifier", name: "Máy hút ẩm", description: "Hút ẩm chống nấm mốc...", image: dehumidifierProducts[0].image, data: dehumidifierProducts },
+    { id: "hair-styler", name: "Máy tạo kiểu tóc", description: "Máy uốn tóc xoăn...", image: stylerProducts[0].image, data: stylerProducts },
+    { id: "essential-diffuser", name: "Máy xông tinh dầu", description: "Phun sương khuếch tán...", image: diffuserProducts[0].image, data: diffuserProducts },
+    { id: "knives", name: "Dao kéo các loại", description: "Bộ dao làm bếp...", image: knifeProducts[0].image, data: knifeProducts },
+  ];
+
+  const handleOpenCategory = (categoryId: string) => {
+    setSelectedCategory(categoryId);
     setCurrentView("category");
   };
 
-  // Mở trang chi tiết sản phẩm
-  const handleOpenDetail = (prodId: string) => {
-    const prod = PRODUCTS.find((p) => p.id === prodId);
-    if (prod) {
-      setSelectedProductId(prodId);
-      setSelectedDetailImage(prod.images[0]?.url || prod.mainImage);
-      setQuantity(1);
-      setCurrentView("detail");
-    }
+  const handleOpenDetail = (product: any) => {
+    setSelectedProduct(product);
+    setSelectedImage(product.image);
+    setQuantity(1);
+    setCurrentView("detail");
+  };
+
+  const getActiveCategoryData = () => {
+    return categoriesHome.find((c) => c.id === selectedCategory) || categoriesHome[0];
   };
 
   const addToCart = () => {
@@ -142,57 +212,32 @@ export default function HomeShop() {
     alert("Đã thêm sản phẩm vào giỏ hàng!");
   };
 
-  const filteredProducts = activeCategory === "all" 
-    ? PRODUCTS 
-    : PRODUCTS.filter((p) => p.categoryId === activeCategory);
-
   return (
     <div className="min-h-screen bg-gray-100 font-sans pb-12">
-      {/* HEADER TOP NAV */}
+      {/* Header */}
       <header className="bg-white border-b sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <h1 
             onClick={() => setCurrentView("home")} 
-            className="text-2xl font-bold text-blue-600 cursor-pointer flex items-center gap-1"
+            className="text-2xl font-bold text-blue-600 cursor-pointer flex items-center gap-2"
           >
             HomeShop
           </h1>
-
-          {/* DANH MỤC TRÊN MENU */}
-          <nav className="hidden md:flex space-x-6 text-gray-700 font-medium text-sm">
-            <button 
-              onClick={() => setCurrentView("home")}
-              className={`hover:text-blue-600 transition ${currentView === "home" ? "text-blue-600 font-bold" : ""}`}
-            >
-              Trang chủ
-            </button>
-            <button 
-              onClick={() => handleSelectCategory("fan")}
-              className={`hover:text-blue-600 transition ${activeCategory === "fan" && currentView === "category" ? "text-blue-600 font-bold" : ""}`}
-            >
-              Quạt điện
-            </button>
-            <button 
-              onClick={() => handleSelectCategory("air-purifier")}
-              className={`hover:text-blue-600 transition ${activeCategory === "air-purifier" && currentView === "category" ? "text-blue-600 font-bold" : ""}`}
-            >
-              Máy lọc khí
-            </button>
-            <button 
-              onClick={() => handleSelectCategory("dehumidifier")}
-              className={`hover:text-blue-600 transition ${activeCategory === "dehumidifier" && currentView === "category" ? "text-blue-600 font-bold" : ""}`}
-            >
-              Máy hút ẩm
-            </button>
+          <nav className="hidden md:flex space-x-3 text-gray-700 font-medium text-xs lg:text-sm overflow-x-auto py-2">
+            <button onClick={() => setCurrentView("home")} className="hover:text-blue-600 whitespace-nowrap">Trang chủ</button>
+            <button onClick={() => handleOpenCategory("hair-dryer")} className="hover:text-blue-600 whitespace-nowrap">Máy sấy tóc</button>
+            <button onClick={() => handleOpenCategory("electric-toothbrush")} className="hover:text-blue-600 whitespace-nowrap">Bàn chải điện</button>
+            <button onClick={() => handleOpenCategory("water-flosser")} className="hover:text-blue-600 whitespace-nowrap">Máy tăm nước</button>
+            <button onClick={() => handleOpenCategory("fan")} className="hover:text-blue-600 whitespace-nowrap text-blue-700 font-bold">Quạt điện</button>
+            <button onClick={() => handleOpenCategory("air-purifier")} className="hover:text-blue-600 whitespace-nowrap">Máy lọc khí</button>
+            <button onClick={() => handleOpenCategory("dehumidifier")} className="hover:text-blue-600 whitespace-nowrap">Máy hút ẩm</button>
           </nav>
-
-          {/* GIỎ HÀNG */}
           <div className="relative">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition text-sm font-medium">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition text-sm">
               🛒 Giỏ hàng
             </button>
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                 {cartCount}
               </span>
             )}
@@ -200,225 +245,229 @@ export default function HomeShop() {
         </div>
       </header>
 
-      {/* NỘI DUNG CHÍNH THAY ĐỔI THEO GIAO DIỆN */}
+      {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-6">
 
-        {/* 1. TRANG CHỦ HOẶC TRANG DANH MỤC */}
-        {(currentView === "home" || currentView === "category") && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between bg-white p-4 rounded-xl border shadow-sm">
-              <h2 className="text-xl font-bold text-gray-800">
-                {currentView === "home" ? "🔥 Tất Cả Sản Phẩm Nổi Bật" : `Danh Mục: ${PRODUCTS.find(p => p.categoryId === activeCategory)?.categoryName || "Sản Phẩm"}`}
-              </h2>
-              <div className="flex gap-2">
-                <button 
-                  onClick={() => handleSelectCategory("all")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${activeCategory === "all" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
-                >
-                  Tất cả
-                </button>
-                <button 
-                  onClick={() => handleSelectCategory("fan")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${activeCategory === "fan" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
-                >
-                  Quạt điện
-                </button>
-                <button 
-                  onClick={() => handleSelectCategory("air-purifier")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${activeCategory === "air-purifier" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700"}`}
-                >
-                  Máy lọc khí
-                </button>
-              </div>
+        {/* 1. TRANG DANH MỤC SẢN PHẨM */}
+        {currentView === "category" && (
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <span onClick={() => setCurrentView("home")} className="cursor-pointer hover:underline">Trang chủ</span>
+              <span>&gt;</span>
+              <span className="text-gray-900 font-semibold">Danh mục {getActiveCategoryData().name}</span>
             </div>
 
-            {/* DANH SÁCH THẺ SẢN PHẨM */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {filteredProducts.map((prod) => (
-                <div 
-                  key={prod.id} 
-                  onClick={() => handleOpenDetail(prod.id)}
-                  className="bg-white rounded-xl border shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer flex flex-col justify-between group"
-                >
-                  <div className="aspect-square bg-gray-50 overflow-hidden relative border-b">
-                    <img 
-                      src={prod.mainImage} 
-                      alt={prod.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                      onError={(e) => {
-                        // Ảnh dự phòng chất lượng cao nếu mạng bị chặn
-                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=800&q=80";
-                      }}
-                    />
-                    <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                      {prod.discount}
-                    </span>
-                  </div>
-                  <div className="p-4 flex-1 flex flex-col justify-between">
+            <div className="bg-white p-5 rounded-xl border shadow-sm">
+              <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 border-b pb-3">
+                📦 Tất cả {getActiveCategoryData().name} ({getActiveCategoryData().data.length} sản phẩm)
+              </h2>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {getActiveCategoryData().data.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => handleOpenDetail(item)}
+                    className="border rounded-xl bg-white p-3 flex flex-col justify-between hover:shadow-lg transition cursor-pointer group"
+                  >
                     <div>
-                      <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">{prod.brand}</span>
-                      <h3 className="font-bold text-gray-900 text-sm line-clamp-2 mt-1 group-hover:text-blue-600 transition">
-                        {prod.name}
+                      <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-3 flex items-center justify-center p-2">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                        />
+                      </div>
+
+                      <h3 className="text-xs font-semibold text-gray-800 line-clamp-2 min-h-[32px]">
+                        <span className="font-bold text-blue-700">[{item.brand}]</span> {item.name.replace(item.brand, "")}
                       </h3>
+
+                      <div className="mt-3">
+                        <div className="text-[11px] text-blue-600 font-medium">Gợi ý giảm thêm qua hotline</div>
+                        <div className="text-base font-bold text-red-600 mt-0.5">
+                          {item.price.toLocaleString("vi-VN")}đ
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                          <span className="line-through">{item.originalPrice.toLocaleString("vi-VN")}đ</span>
+                          <span className="text-blue-600 font-bold">{item.discount}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-4 pt-3 border-t flex items-baseline justify-between">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-lg font-extrabold text-red-600">
-                          {prod.price.toLocaleString("vi-VN")} đ
-                        </span>
-                        <span className="text-xs text-gray-400 line-through">
-                          {prod.originalPrice.toLocaleString("vi-VN")} đ
-                        </span>
+
+                    <div className="mt-3 pt-2 border-t text-[11px] text-gray-500 space-y-1">
+                      <div className="text-blue-600 flex items-center gap-1 font-medium">
+                        👍 Hoàn tiền nếu siêu thị khác Rẻ hơn
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-amber-500 font-medium">⭐ {item.rating}</span>
+                        <span className="text-gray-400 hover:text-blue-600">+ So sánh</span>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         )}
 
-        {/* 2. TRANG CHI TIẾT SẢN PHẨM (DETAIL) */}
-        {currentView === "detail" && (
+        {/* 2. TRANG CHI TIẾT SẢN PHẨM */}
+        {currentView === "detail" && selectedProduct && (
           <div className="space-y-6">
-            {/* Thanh Breadcrumb */}
+            {/* Đường dẫn */}
             <div className="flex items-center gap-2 text-sm text-gray-500">
-              <button onClick={() => setCurrentView("home")} className="hover:text-blue-600">Trang chủ</button>
+              <span onClick={() => setCurrentView("home")} className="cursor-pointer hover:underline">Trang chủ</span>
               <span>&gt;</span>
-              <button onClick={() => handleSelectCategory(currentProduct.categoryId)} className="hover:text-blue-600">
-                {currentProduct.categoryName}
-              </button>
+              <span onClick={() => setCurrentView("category")} className="cursor-pointer hover:underline">
+                {getActiveCategoryData().name}
+              </span>
               <span>&gt;</span>
-              <span className="text-gray-900 font-medium line-clamp-1">{currentProduct.name}</span>
+              <span className="text-gray-900 font-medium line-clamp-1">{selectedProduct.name}</span>
             </div>
 
-            {/* Khối Thông Tin Sản Phẩm Chính */}
+            {/* Khối Trên: Ảnh + Mua hàng */}
             <div className="bg-white rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-8 border">
-              
-              {/* GALLERY HÌNH ẢNH SẢN PHẨM */}
+              {/* Cột trái: Ảnh sản phẩm */}
               <div>
-                <div className="aspect-square bg-gray-50 rounded-xl overflow-hidden mb-4 border flex items-center justify-center relative">
-                  <img 
-                    src={selectedDetailImage} 
-                    alt={currentProduct.name} 
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=800&q=80";
-                    }}
-                  />
+                <div className="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 border flex items-center justify-center">
+                  <img src={selectedImage} alt={selectedProduct.name} className="w-full h-full object-cover" />
                 </div>
 
-                {/* Danh sách ảnh nhỏ chuyển đổi */}
-                <div className="grid grid-cols-5 gap-2">
-                  {currentProduct.images.map((img) => (
-                    <button
-                      key={img.id}
-                      onClick={() => setSelectedDetailImage(img.url)}
-                      className={`aspect-square rounded-lg border overflow-hidden transition relative ${
-                        selectedDetailImage === img.url 
-                          ? "border-2 border-red-600 shadow-sm opacity-100" 
-                          : "border-gray-200 opacity-60 hover:opacity-100"
-                      }`}
-                    >
-                      <img 
-                        src={img.url} 
-                        alt={img.title} 
-                        className="w-full h-full object-cover" 
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1565151443833-29bf2ba5dd8d?w=800&q=80";
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                {/* Gallery ảnh nhỏ */}
+                {selectedProduct.images && selectedProduct.images.length > 0 && (
+                  <div className="flex gap-2 overflow-x-auto pb-2">
+                    {selectedProduct.images.map((imgUrl: string, idx: number) => (
+                      <button
+                        key={idx}
+                        onClick={() => setSelectedImage(imgUrl)}
+                        className={`w-16 h-16 rounded-md border flex-shrink-0 overflow-hidden ${
+                          selectedImage === imgUrl ? "border-blue-600 border-2" : "border-gray-200 opacity-70 hover:opacity-100"
+                        }`}
+                      >
+                        <img src={imgUrl} alt={`Ảnh ${idx + 1}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* THÔNG TIN CHI TIẾT & NÚT MUA HÀNG */}
+              {/* Cột phải: Giá + Nút Mua */}
               <div className="flex flex-col justify-between">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 leading-snug mb-3">
-                    <span className="text-blue-700 font-extrabold">[{currentProduct.brand}]</span> {currentProduct.name}
+                    <span className="text-blue-700 font-extrabold">[{selectedProduct.brand}]</span> {selectedProduct.name}
                   </h2>
 
-                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
-                    <span className="text-amber-500 font-bold">⭐ {currentProduct.rating}</span>
+                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-5">
+                    <span className="text-amber-500 font-bold">⭐ {selectedProduct.rating}</span>
                     <span>|</span>
-                    <span className="text-green-600 font-medium">Chính hãng FUJIHOME VIỆT NAM</span>
+                    <span className="text-green-600 font-medium">Chính hãng FUJIHOME</span>
                   </div>
 
-                  {/* Giá sản phẩm */}
-                  <div className="bg-red-50/70 p-4 rounded-xl border border-red-100 mb-6 flex items-baseline gap-4">
+                  {/* Khối giá */}
+                  <div className="bg-red-50/60 p-4 rounded-xl border border-red-100 mb-6 flex items-baseline gap-4">
                     <span className="text-3xl font-extrabold text-red-600">
-                      {currentProduct.price.toLocaleString("vi-VN")} đ
+                      {selectedProduct.price.toLocaleString("vi-VN")} đ
                     </span>
                     <span className="text-sm text-gray-400 line-through">
-                      {currentProduct.originalPrice.toLocaleString("vi-VN")} đ
+                      {selectedProduct.originalPrice.toLocaleString("vi-VN")} đ
                     </span>
                     <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                      {currentProduct.discount}
+                      {selectedProduct.discount}
                     </span>
                   </div>
 
-                  {/* Ưu đãi & Cam kết */}
-                  <div className="space-y-2 text-xs text-gray-700 mb-6 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                  {/* Cam kết mua hàng ngắn */}
+                  <div className="space-y-2.5 text-xs text-gray-700 mb-6 bg-blue-50/40 p-4 rounded-xl border border-blue-100">
                     <div className="flex items-center gap-2 font-medium">
-                      <span className="text-blue-600">✓</span> Hàng Nhập Khẩu chính hãng, đầy đủ giấy tờ CO-CQ.
+                      <span className="text-blue-600 text-sm">✓</span> Hàng Nhập Khẩu chính hãng, đầy đủ CO-CQ.
                     </div>
                     <div className="flex items-center gap-2 font-medium">
-                      <span className="text-blue-600">✓</span> Bảo hành điện tử chính hãng 24 tháng toàn quốc.
+                      <span className="text-blue-600 text-sm">✓</span> Bảo hành điện tử chính hãng 24 tháng.
                     </div>
                     <div className="flex items-center gap-2 font-medium">
-                      <span className="text-blue-600">✓</span> Lỗi 1 đổi 1 trong vòng 7 ngày nếu có lỗi NSX.
+                      <span className="text-blue-600 text-sm">✓</span> Lỗi 1 đổi 1 trong 7 ngày.
+                    </div>
+                    <div className="flex items-center gap-2 font-medium">
+                      <span className="text-blue-600 text-sm">✓</span> Giao hỏa tốc 2H tại Hà Nội - HCM - Đà Nẵng.
                     </div>
                   </div>
 
-                  {/* Bộ chọn số lượng */}
+                  {/* Chọn số lượng */}
                   <div className="flex items-center gap-4 py-4 border-t border-b text-sm mb-6">
-                    <span className="text-gray-600 font-medium">Số Lượng:</span>
+                    <span className="text-gray-600 font-medium w-20">Số Lượng:</span>
                     <div className="flex items-center border rounded-lg bg-white">
-                      <button 
-                        onClick={() => setQuantity(Math.max(1, quantity - 1))} 
-                        className="px-3.5 py-1.5 border-r hover:bg-gray-100 font-bold"
-                      >
-                        -
-                      </button>
+                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="px-3.5 py-1.5 border-r hover:bg-gray-100 font-bold">-</button>
                       <span className="px-6 py-1.5 font-bold">{quantity}</span>
-                      <button 
-                        onClick={() => setQuantity(quantity + 1)} 
-                        className="px-3.5 py-1.5 border-l hover:bg-gray-100 font-bold"
-                      >
-                        +
-                      </button>
+                      <button onClick={() => setQuantity(quantity + 1)} className="px-3.5 py-1.5 border-l hover:bg-gray-100 font-bold">+</button>
                     </div>
                   </div>
                 </div>
 
-                {/* Mua hàng */}
+                {/* Các nút bấm */}
                 <div className="grid grid-cols-2 gap-4">
-                  <button 
-                    onClick={addToCart} 
-                    className="bg-blue-50 text-blue-600 border border-blue-600 font-bold py-3.5 rounded-xl hover:bg-blue-100 transition"
-                  >
-                    🛒 Thêm Giỏ Hàng
+                  <button onClick={addToCart} className="bg-blue-50 text-blue-600 border border-blue-600 font-bold py-3.5 rounded-xl hover:bg-blue-100 transition">
+                    🛒 Thêm Vào Giỏ Hàng
                   </button>
-                  <button 
-                    onClick={addToCart} 
-                    className="bg-red-600 text-white font-bold py-3.5 rounded-xl hover:bg-red-700 transition shadow-md"
-                  >
+                  <button onClick={addToCart} className="bg-red-600 text-white font-bold py-3.5 rounded-xl hover:bg-red-700 transition shadow-md">
                     🛍️ MUA NGAY
                   </button>
                 </div>
               </div>
             </div>
 
-            {/* Mô tả sản phẩm chi tiết */}
+            {/* KHỐI DƯỚI: THÔNG TIN CHI TIẾT SẢN PHẨM & THÔNG SỐ KỸ THUẬT */}
             <div className="bg-white rounded-xl p-6 shadow-sm border">
-              <h3 className="text-lg font-bold text-gray-900 border-b pb-3 mb-4">
-                📝 MÔ TẢ SẢN PHẨM & THÔNG SỐ KỸ THUẬT
+              <h3 className="text-lg font-bold text-gray-900 border-b pb-3 mb-4 flex items-center gap-2">
+                📝 CHI TIẾT SẢN PHẨM & THÔNG SỐ KỸ THUẬT
               </h3>
               <div className="whitespace-pre-line text-sm text-gray-700 leading-relaxed bg-gray-50 p-6 rounded-xl border border-gray-200">
-                {currentProduct.description}
+                {selectedProduct.description}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* 3. TRANG CHỦ DANH SÁCH CÁC DANH MỤC */}
+        {currentView === "home" && (
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {categoriesHome.map((category) => (
+                <div
+                  key={category.id}
+                  className="bg-white rounded-xl shadow-sm border p-4 flex flex-col justify-between hover:shadow-md transition cursor-pointer group"
+                  onClick={() => handleOpenCategory(category.id)}
+                >
+                  <div>
+                    <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-50 mb-3">
+                      <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider z-10">
+                        DANH MỤC
+                      </span>
+                      <img 
+                        src={category.image} 
+                        alt={category.name} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                      />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base mb-1">{category.name}</h3>
+                    <p className="text-xs text-gray-500 mb-3 line-clamp-2">{category.description}</p>
+                  </div>
+
+                  <div>
+                    <div className="text-red-600 font-bold text-sm mb-3">
+                      Xem danh sách ({category.data.length} sản phẩm)
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenCategory(category.id);
+                      }}
+                      className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+                    >
+                      Xem tất cả
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}
